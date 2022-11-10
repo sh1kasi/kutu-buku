@@ -1,0 +1,44 @@
+@extends('layouts.admin')
+
+@section('content')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<div class="page-content">
+    <div class="main-wrapper">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Kategori</h5>
+
+                        {{-- @dd($category) --}}
+
+                        <form action="{{ url('/category/' . $category->id) }}" method=post>
+                            @csrf
+                            @method('put')
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Nama Kategori</label>
+                              <input type="text" id="name" name="name" class="form-control" value="{{ $category->name }}" id="exampleInputEmail1" placeholder="Masukkan nama kategori" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label">Slug</label>
+                              <input type="text" id="slug" name="slug" class="form-control" value="{{ $category->name }}" placeholder="Masukkan Slug" id="exampleInputPassword1">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#name').bind('keypress keyup blur', function() {
+        $('#slug').val($(this).val());
+    });
+</script>
+    
+@endsection

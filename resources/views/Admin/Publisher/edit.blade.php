@@ -1,0 +1,43 @@
+@extends('layouts.admin')
+
+@section('content')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<div class="page-content">
+    <div class="main-wrapper">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Publisher</h5>
+
+                        {{-- @dd($category) --}}
+
+                        <form action="{{ url('/publisher/' . $publisher->id) }}" method=post>
+                            @csrf
+                            @method('put')
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Nama Publisher</label>
+                              <input type="text" id="name" name="name" class="form-control" value="{{ $publisher->name }}" id="exampleInputEmail1" placeholder="Masukkan nama publisher" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label">Alamat</label>
+                              <input type="text" id="address" name="address" class="form-control" value="{{ $publisher->address }}" placeholder="Masukkan alamat" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label">No. Telepon</label>
+                              <input type="text" id="phone" name="phone" class="form-control" value="{{ $publisher->phone }}" placeholder="Masukkan No. telepon" id="exampleInputPassword1">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+@endsection
