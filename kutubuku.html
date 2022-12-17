@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
+    <!-- my css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- my js -->
+    <script src="assets/js/script.js"></script>
+
+    <title>Halaman Utama | Kutu Buku</title>
+  </head>
+  <body>
+    <a href="#wabox" id="waBox"><img class="wa-icon fixed-bottom" src="assets/image/icon-wa-removebg-preview (1).png" alt="" /></a>
+    <!-- navbar -->
+    <nav class="row navbar-light shadow mb-5 bg-body rounded fixed-top d-flex">
+      <div class="col-md-3" style="padding-top: 15px; padding-bottom: 15px">
+        <a class="merk navbar-brand" href="kutubuku.html">
+          <i class="icon-buku bi bi-book d-inline-block align-text-top ms-5">KUTU BUKU</i>
+        </a>
+      </div>
+      <div class="col-md-2" style="padding-top: 15px">
+        <button class="btn-kategori" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Kategori <i class="bi bi-chevron-down"></i></button>
+      </div>
+      <div class="autocomplete col-md-5" style="padding-top: 15px">
+        <form autocomplete="off" class="form-search"><input id="myInput" class="searching form-control me-2" type="search" placeholder="Cari Produk, Judul Buku, Penulis" aria-label="Search" /></form>
+      </div>
+      <div class="col-md-1" style="padding-top: 25px">
+        <a href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" style="color: #155183">Masuk</a>
+      </div>
+      <!-- <div class="dropdown col-md-1" style="padding-top: 15px">
+        <a class="dropdown" id="dropdownMenuButton1" data-bs-toggle="dropdown"> <i class="akun bi bi-person-circle"></i> </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1" style="border-radius: 10px">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <div class="dropdown-divider"></div>
+          <li><a class="dropdown-item text-danger" href="#">Keluar</a></li>
+        </ul>
+      </div> -->
+      <div class="col-md-1" style="padding-top: 15px">
+        <a href="keranjang.html"><i class="keranjang bi bi-cart2"></i></a>
+      </div>
+      <span class="category_menu row collapse" id="collapseExample">
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak2" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px">Buku</span>
+          <div class="kotak col-md-6" id="kotak2" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+          </div>
+        </a>
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak3" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px">Ebook</span>
+          <div class="kotak col-md-6" id="kotak3" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p>Ebook</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Ebook</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Ebook</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Ebook</p></a>
+          </div>
+        </a>
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak4" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px">Alat Tulis</span>
+          <div class="kotak col-md-6" id="kotak4" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p>Alat Tulis</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Alat Tulis</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Alat Tulis</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Alat Tulis</p></a>
+          </div>
+        </a>
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak5" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px; padding-bottom: 100px">Mainan</span>
+          <div class="kotak col-md-6" id="kotak5" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p>Mainan</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Mainan</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Mainan</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Mainan</p></a>
+          </div>
+        </a>
+      </span>
+    </nav>
+    <!-- tutup navbar -->
+
+    <!-- account -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content p-3">
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input style="border: none; border-bottom: 1px solid" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input style="border: none; border-bottom: 1px solid" type="password" class="form-control" id="myInputPw4" />
+            </div>
+            <input type="checkbox" onclick="myFunction()" />Show Password
+            <div class="mb-3 text-center">
+              <a href="#">Lupa Kata Sandi</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 text-center">Masuk</button>
+            <div class="mb-3 mt-3">
+              <p class="text-center">Belum mendaftar? <a href="daftar.html">Daftar</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- tutup account -->
+
+    <!-- carousel -->
+    <div class="carousel d-flex">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/image/carousel1.jpg" class="d-block" alt="carousel1" style="height: 350px; width: 100%" />
+          </div>
+          <div class="carousel-item">
+            <img src="assets/image/carousel2.jpg" class="d-block w-100" alt="carousel2" style="height: 350px" />
+          </div>
+          <div class="carousel-item">
+            <img src="assets/image/carousel3.jpg" class="d-block w-100" alt="carrousel3" style="height: 350px" />
+          </div>
+        </div>
+        <button class="carousel-control-prev pt-5" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next pt-5" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="without-carousel">
+        <img class="img1" src="assets/image/without-carousel1.jpg" alt="" />
+        <img class="img1-2" src="assets/image/without-carousel2.jpg" alt="" />
+      </div>
+    </div>
+    <!-- tutup carousel -->
+
+    <!-- icon -->
+    <div class="icon-kategori">
+      <div class="buku-pilihan">
+        <a href="bukupilihan.html"><img src="assets/image/Icon-bukupilihan.png" alt="" style="padding-right: 20px; padding-left: 20px" /></a>
+        <h6 class="text-icon text-center">Buku Pilihan</h6>
+      </div>
+      <div class="ebook">
+        <img src="assets/image/Icon-ebook.png" alt="" style="padding-right: 20px; padding-left: 20px" />
+        <h6 class="text-icon text-center">Ebook</h6>
+      </div>
+      <div class="alat-tulis">
+        <img src="assets/image/Icon-alattulis.png" alt="" style="padding-right: 20px; padding-left: 20px" />
+        <h6 class="text-icon text-center">Alat Tulis</h6>
+      </div>
+      <div class="mainan">
+        <img src="assets/image/Icon-mainan.png" alt="" style="padding-right: 20px; padding-left: 20px" />
+        <h6 class="text-icon text-center">Mainan</h6>
+      </div>
+    </div>
+
+    <!-- tutup icon -->
+
+    <!-- rekomendasi -->
+    <p class="text-recommend">Rekomendasi Kutu Buku Untukmu</p>
+    <div class="recommended">
+      <div class="row row-cols-1 row-cols-md-6 g-3">
+        <a href="lovefromatoz.html" style="text-decoration: none">
+          <div class="col">
+            <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
+              <img src="assets/image/book1.jpg" class="card-img-top" alt="..." style="height: 200px" />
+              <div class="card-body">
+                <p class="card-text" style="font-size: 12px; color: #212529">S.K. Ali</p>
+                <h5 class="card-title" style="font-size: 14px; color: #212529">Love from A to Z</h5>
+                <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 93.000</b></h5>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="col">
+          <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book2.jpg" class="card-img-top" alt="..." style="height: 200px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Gosho Aoyama</p>
+              <h5 class="card-title" style="font-size: 14px">Detectif Conan</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 68.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book3.jpg" class="card-img-top" alt="..." style="height: 200px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Haruichi Furudate</p>
+              <h5 class="card-title" style="font-size: 14px">Haikyu S4</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 60.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book4.jpeg" class="card-img-top" alt="..." style="height: 200px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Gege Akutami</p>
+              <h5 class="card-title" style="font-size: 14px">Jujutsu Kaisen 0</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 70.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book5.jpg" class="card-img-top" alt="..." style="height: 200px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Gege Akutami</p>
+              <h5 class="card-title" style="font-size: 14px">Jujutsu Kaisen 1</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 75.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book6.jpg" class="card-img-top" alt="..." style="height: 200px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Masashi Kishimoto</p>
+              <h5 class="card-title" style="font-size: 14px">Naruto</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 50.000</b></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- tutup dari rekomendasi -->
+
+    <!-- buku terpopuler -->
+    <h4 class="text-popular">Buku - Buku Terpopuler</h4>
+    <div class="popular">
+      <div class="row row-cols-1 row-cols-md-5 g-4" style="justify-content: space-between">
+        <div class="banner1">
+          <a href="banner1.html"><img src="assets/image/banner1.png" class="img-banner1" alt="" /></a>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-popular.jpg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">James Clear</p>
+              <h5 class="card-title" style="font-size: 14px">Atomic Habits</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 97.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-popular2.jpeg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Henry Manampiring</p>
+              <h5 class="card-title" style="font-size: 14px">Filosofi Teras</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 78.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-popular3.jpg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Yoon Hong Gyun</p>
+              <h5 class="card-title" style="font-size: 14px">How To Respect My Self</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 77.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-popular4.jpg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">DR. Carol S Dweck</p>
+              <h5 class="card-title" style="font-size: 14px">Mindset</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 83.000</b></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- buku novel terpopuler -->
+    <h4 class="text-popular-novel">Novel Paling Laris</h4>
+    <div class="popular-novel">
+      <div class="row row-cols-1 row-cols-md-5 g-4" style="justify-content: space-between">
+        <div class="banner1">
+          <img src="assets/image/banner2.png" class="img-banner1" alt="" />
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-novel1.jpg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Tere Liye</p>
+              <h5 class="card-title" style="font-size: 14px">Hujan</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 89.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-novel2.jpg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Tere Liye</p>
+              <h5 class="card-title" style="font-size: 14px">Matahari Minor</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 95.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-novel3.jpg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Tere Liye</p>
+              <h5 class="card-title" style="font-size: 14px">Bumi</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 103.000</b></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
+            <img src="assets/image/book-novel4.jpg" class="card-img-top" alt="..." style="height: 220px" />
+            <div class="card-body">
+              <p class="card-text" style="font-size: 12px">Mommy ASF</p>
+              <h5 class="card-title" style="font-size: 14px">Layangan Putus</h5>
+              <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 75.000</b></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- wabox -->
+    <div class="wabox" style="display: none">
+      <div class="wahead d-flex">
+        <button type="button" class="btn-close" data-bs-dismiss="wabox" aria-label="Close" id="btn-close-wa-box" style="color: #ffffff"></button>
+        <img src="assets/image/person-icon.png" alt="person-icon" style="width: 45px; height: 60px; padding-left: 15px; padding-bottom: 15px; padding-top: 15px" />
+        <b style="padding-top: 20px; padding-left: 10px; color: #ffffff">Faiz Agit Zahiri</b>
+      </div>
+      <div class="wabody">
+        <div class="watxt">Hi KutuBuku 👋<br /><br />Ada yang bisa saya bantu?</div>
+        <div class="pnh"></div>
+      </div>
+      <div class="wafooter" style="padding-left: 15px">
+        <textarea row="2" id="wapesan"></textarea>
+        <i class="bi bi-send" style="font-size: 25px; color: rgb(85, 85, 85)"></i>
+      </div>
+    </div>
+    <!-- tutup wabox -->
+
+    <!-- footer -->
+    <div class="footer-top">
+      <div class="subscribe">
+        <p style="padding-top: 40px; padding-left: 40px; padding-bottom: 40px">Kejutan spesial dari kami hanya untukmu</p>
+      </div>
+      <div class="subscribe-box">
+        <input style="height: 40px; width: 500px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border: none" type="text" id="fname" name="fname" />
+        <span style="height: 40px; background-color: #0060ae" class="daftar text-light" id="basic-addon2">Daftar</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom row-cols-md-5">
+      <div class="belanja col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Belanja</h6>
+        <p style="font-size: 15px">Berbelanja</p>
+        <p style="font-size: 15px">pembayaran</p>
+        <p style="font-size: 15px">Pengiriman</p>
+      </div>
+      <div class="tentang-kami col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Tentang Kutu Buku</h6>
+        <p style="font-size: 15px">Tentang Kami</p>
+        <p style="font-size: 15px">Toko Kami</p>
+        <p style="font-size: 15px">Kerjasama</p>
+      </div>
+      <div class="lainnya col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Lainnya</h6>
+        <p style="font-size: 15px">Syarat & Ketentuan</p>
+        <p style="font-size: 15px">Kebijakan & Privasi</p>
+        <p style="font-size: 15px">Bantuan</p>
+        <p style="font-size: 15px">Hubungi Kami</p>
+      </div>
+      <div class="aplikasi-seluler col-md-2">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Aplikasi Seluler Kami</h6>
+        <p style="font-size: 15px">Download aplikasi <b>KutuBuku</b> yang tersedia di seluruh perangkat iOS dan Android</p>
+        <img src="assets/image/play-store.png" alt="" style="width: 90px" />
+        <img src="assets/image/app-store.png" alt="" style="width: 90px" />
+      </div>
+    </div>
+    <!-- tutup footer -->
+
+    <!-- footer sosmed -->
+    <div class="footer-sosmed">
+      <div class="logo">
+        <i class="icon-buku bi bi-book d-inline-block align-text-top ms-5"><b>KUTU BUKU</b></i>
+      </div>
+      <div class="text-footer-sosmed">
+        <h5 style="margin-top: 8px; color: #6e6e6e">Toko buku online terbesar, terlengkap dan terpercaya di Indonesia</h5>
+      </div>
+      <div class="icon-sosmed">
+        <img src="assets/image/icon-sosmed.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+        <img src="assets/image/icon-sosmed2.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+        <img src="assets/image/icon-sosmed3.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+      </div>
+    </div>
+    <!-- tutup footer sosmed -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script>
+      var countries = [
+        'Afghanistan',
+        'Albania',
+        'Algeria',
+        'Andorra',
+        'Angola',
+        'Anguilla',
+        'Antigua &amp; Barbuda',
+        'Argentina',
+        'Armenia',
+        'Aruba',
+        'Australia',
+        'Austria',
+        'Azerbaijan',
+        'Bahamas',
+        'Bahrain',
+        'Bangladesh',
+        'Barbados',
+        'Belarus',
+        'Belgium',
+        'Belize',
+        'Benin',
+        'Bermuda',
+        'Bhutan',
+        'Bolivia',
+        'Bosnia &amp; Herzegovina',
+        'Botswana',
+        'Brazil',
+        'British Virgin Islands',
+        'Brunei',
+        'Bulgaria',
+        'Burkina Faso',
+        'Burundi',
+        'Cambodia',
+        'Cameroon',
+        'Canada',
+        'Cape Verde',
+        'Cayman Islands',
+        'Central Arfrican Republic',
+        'Chad',
+        'Chile',
+        'China',
+        'Colombia',
+        'Congo',
+        'Cook Islands',
+        'Costa Rica',
+        'Cote D Ivoire',
+        'Croatia',
+        'Cuba',
+        'Curacao',
+        'Cyprus',
+        'Czech Republic',
+        'Denmark',
+        'Djibouti',
+        'Dominica',
+        'Dominican Republic',
+        'Ecuador',
+        'Egypt',
+        'El Salvador',
+        'Equatorial Guinea',
+        'Eritrea',
+        'Estonia',
+        'Ethiopia',
+        'Falkland Islands',
+        'Faroe Islands',
+        'Fiji',
+        'Finland',
+        'France',
+        'French Polynesia',
+        'French West Indies',
+        'Gabon',
+        'Gambia',
+        'Georgia',
+        'Germany',
+        'Ghana',
+        'Gibraltar',
+        'Greece',
+        'Greenland',
+        'Grenada',
+        'Guam',
+        'Guatemala',
+        'Guernsey',
+        'Guinea',
+        'Guinea Bissau',
+        'Guyana',
+        'Haiti',
+        'Honduras',
+        'Hong Kong',
+        'Hungary',
+        'Iceland',
+        'India',
+        'Indonesia',
+        'Iran',
+        'Iraq',
+        'Ireland',
+        'Isle of Man',
+        'Israel',
+        'Italy',
+        'Jamaica',
+        'Japan',
+        'Jersey',
+        'Jordan',
+        'Kazakhstan',
+        'Kenya',
+        'Kiribati',
+        'Kosovo',
+        'Kuwait',
+        'Kyrgyzstan',
+        'Laos',
+        'Latvia',
+        'Lebanon',
+        'Lesotho',
+        'Liberia',
+        'Libya',
+        'Liechtenstein',
+        'Lithuania',
+        'Love from A to Z',
+        'Luxembourg',
+        'Macau',
+        'Macedonia',
+        'Madagascar',
+        'Malawi',
+        'Malaysia',
+        'Maldives',
+        'Mali',
+        'Malta',
+        'Marshall Islands',
+        'Mauritania',
+        'Mauritius',
+        'Mexico',
+        'Micronesia',
+        'Moldova',
+        'Monaco',
+        'Mongolia',
+        'Montenegro',
+        'Montserrat',
+        'Morocco',
+        'Mozambique',
+        'Myanmar',
+        'Namibia',
+        'Nauro',
+        'Nepal',
+        'Netherlands',
+        'Netherlands Antilles',
+        'New Caledonia',
+        'New Zealand',
+        'Nicaragua',
+        'Niger',
+        'Nigeria',
+        'North Korea',
+        'Norway',
+        'Oman',
+        'Pakistan',
+        'Palau',
+        'Palestine',
+        'Panama',
+        'Papua New Guinea',
+        'Paraguay',
+        'Peru',
+        'Philippines',
+        'Poland',
+        'Portugal',
+        'Puerto Rico',
+        'Qatar',
+        'Reunion',
+        'Romania',
+        'Russia',
+        'Rwanda',
+        'Saint Pierre &amp; Miquelon',
+        'Samoa',
+        'San Marino',
+        'Sao Tome and Principe',
+        'Saudi Arabia',
+        'Senegal',
+        'Serbia',
+        'Seychelles',
+        'Sierra Leone',
+        'Singapore',
+        'Slovakia',
+        'Slovenia',
+        'Solomon Islands',
+        'Somalia',
+        'South Africa',
+        'South Korea',
+        'South Sudan',
+        'Spain',
+        'Sri Lanka',
+        'St Kitts &amp; Nevis',
+        'St Lucia',
+        'St Vincent',
+        'Sudan',
+        'Suriname',
+        'Swaziland',
+        'Sweden',
+        'Switzerland',
+        'Syria',
+        'Taiwan',
+        'Tajikistan',
+        'Tanzania',
+        'Thailand',
+        "Timor L'Este",
+        'Togo',
+        'Tonga',
+        'Trinidad &amp; Tobago',
+        'Tunisia',
+        'Turkey',
+        'Turkmenistan',
+        'Turks &amp; Caicos',
+        'Tuvalu',
+        'Uganda',
+        'Ukraine',
+        'United Arab Emirates',
+        'United Kingdom',
+        'United States of America',
+        'Uruguay',
+        'Uzbekistan',
+        'Vanuatu',
+        'Vatican City',
+        'Venezuela',
+        'Vietnam',
+        'Virgin Islands (US)',
+        'Yemen',
+        'Zambia',
+        'Zimbabwe',
+      ];
+    </script>
+    <script>
+      function autocomplete(inp, arr) {
+        /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+        var currentFocus;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener('input', function (e) {
+          var a,
+            b,
+            i,
+            val = this.value;
+          /*close any already open lists of autocompleted values*/
+          closeAllLists();
+          if (!val) {
+            return false;
+          }
+          currentFocus = -1;
+          /*create a DIV element that will contain the items (values):*/
+          a = document.createElement('DIV');
+          a.setAttribute('id', this.id + 'autocomplete-list');
+          a.setAttribute('class', 'autocomplete-items');
+          /*append the DIV element as a child of the autocomplete container:*/
+          this.parentNode.appendChild(a);
+          /*for each item in the array...*/
+          for (i = 0; i < arr.length; i++) {
+            /*check if the item starts with the same letters as the text field value:*/
+            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+              /*create a DIV element for each matching element:*/
+              b = document.createElement('DIV');
+              /*make the matching letters bold:*/
+              b.innerHTML = '<strong>' + arr[i].substr(0, val.length) + '</strong>';
+              b.innerHTML += arr[i].substr(val.length);
+              /*insert a input field that will hold the current array item's value:*/
+              b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+              /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener('click', function (e) {
+                /*insert the value for the autocomplete text field:*/
+                inp.value = this.getElementsByTagName('input')[0].value;
+                /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+                closeAllLists();
+              });
+              a.appendChild(b);
+            }
+          }
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener('keydown', function (e) {
+          var x = document.getElementById(this.id + 'autocomplete-list');
+          if (x) x = x.getElementsByTagName('div');
+          if (e.keyCode == 40) {
+            /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+            currentFocus++;
+            /*and and make the current item more visible:*/
+            addActive(x);
+          } else if (e.keyCode == 38) {
+            //up
+            /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+            currentFocus--;
+            /*and and make the current item more visible:*/
+            addActive(x);
+          } else if (e.keyCode == 13) {
+            /*If the ENTER key is pressed, prevent the form from being submitted,*/
+            e.preventDefault();
+            if (currentFocus > -1) {
+              /*and simulate a click on the "active" item:*/
+              if (x) x[currentFocus].click();
+            }
+          }
+        });
+        function addActive(x) {
+          /*a function to classify an item as "active":*/
+          if (!x) return false;
+          /*start by removing the "active" class on all items:*/
+          removeActive(x);
+          if (currentFocus >= x.length) currentFocus = 0;
+          if (currentFocus < 0) currentFocus = x.length - 1;
+          /*add class "autocomplete-active":*/
+          x[currentFocus].classList.add('autocomplete-active');
+        }
+        function removeActive(x) {
+          /*a function to remove the "active" class from all autocomplete items:*/
+          for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove('autocomplete-active');
+          }
+        }
+        function closeAllLists(elmnt) {
+          /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+          var x = document.getElementsByClassName('autocomplete-items');
+          for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+              x[i].parentNode.removeChild(x[i]);
+            }
+          }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener('click', function (e) {
+          closeAllLists(e.target);
+        });
+      }
+    </script>
+    <script>
+      autocomplete(document.getElementById('myInput'), countries);
+    </script>
+
+    <script>
+      function myFunction() {
+        document.getElementById('demo').innerHTML = 'Women1';
+      }
+    </script>
+    <script>
+      function myFunction() {
+        document.getElementById('demo2').innerHTML = 'Women1';
+      }
+    </script>
+    <script>
+      function myFunction() {
+        var x = document.getElementById('myInputPw4');
+        if (x.type === 'password') {
+          x.type = 'text';
+        } else {
+          x.type = 'password';
+        }
+      }
+
+      $('#waBox').on('click', function () {
+        $('.wabox').fadeToggle('fast');
+      });
+      $('#btn-close-wa-box').on('click', function () {
+        $('.wabox').fadeToggle('fast');
+      });
+
+      $(document).ready(function () {
+        $('.btn').mouseenter(function () {
+          $('.kotak').css('display', 'none');
+          var target = $(this).data('target');
+          $(`#${target}`).css('display', 'block');
+        });
+      });
+      // $(document).ready(function () {
+      //   $('.btn').mouseenter(function () {
+      //     $('.kotak').css('display', 'block');
+      //     var target = $(this).data('target');
+      //     $(`#${target}`).css('display', 'none');
+      //   });
+      // });
+    </script>
+  </body>
+</html>

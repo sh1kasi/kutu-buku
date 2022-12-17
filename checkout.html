@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+
+    <title>CheckOut | KutuBuku</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="row navbar-light shadow mb-5 bg-body rounded fixed-top d-flex">
+      <div class="col-md-3" style="padding-top: 15px; padding-bottom: 15px">
+        <a class="merk navbar-brand" href="kutubuku.html">
+          <i class="icon-buku bi bi-book d-inline-block align-text-top ms-5">KUTU BUKU</i>
+        </a>
+      </div>
+    </nav>
+    <h4 class="title-checkout" style="padding-top: 100px; padding-left: 50px">Checkout</h4>
+    <div class="alamat">
+      <div class="d-flex">
+        <div class="card shadow-sm" style="width: 725px">
+          <div class="card-body">
+            <div class="d-flex" style="justify-content: space-between">
+              <b class="text-alamat text-muted p-3"><i class="bi bi-geo-alt-fill me-1"></i>Alamat Tujuan Pengiriman</b>
+              <!-- <a type="button" class="text-alamat p-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none">Ubah Alamat</a> -->
+            </div>
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="d-flex p-3">
+                    <a href="#"><i class="bi bi-plus-lg" style="font-size: 25px; font-weight: 600; text-decoration: none; color: #000000"></i></a>
+                    <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 130px">Alamat Pengiriman</h5>
+                    <button type="button" style="position: absolute; left: 450px" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="card shadow p-3 mb-2 bg-body rounded" style="width: auto">
+                      <div class="card-alamat">
+                        <div class="ubah-lagi d-flex" style="justify-content: space-between">
+                          <b class="ps-3" style="font-size: 15px">Rumah</b>
+                          <a class="text-alamat" style="text-decoration: none">Ubah </a>
+                        </div>
+                        <div class="ps-3 name-calling d-flex" style="font-size: 14px; font-family: 'Nunito', sans-serif; padding-top: 10px">
+                          <p class="pe-2" style="border-right: 1px solid #000000">Faiz</p>
+                          <p class="ps-2">+62203290330293</p>
+                        </div>
+                        <div class="placement ps-3" style="font-size: 14px; font-family: 'Nunito', sans-serif">
+                          <p>alamat lengkap, kecamatan, kabupaten, provinsi</p>
+                        </div>
+                        <div class="ps-3">
+                          <button type="button" class="btn btn-outline-primary rounded-pill" style="width: 100%">Alamat Terpilih</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card shadow p-3 mb-5 bg-body rounded" style="width: auto">
+                      <div class="card-alamat">
+                        <div class="ubah-lagi d-flex" style="justify-content: space-between">
+                          <b class="ps-3" style="font-size: 15px">Rumah</b>
+                          <a class="text-alamat" style="text-decoration: none">Ubah </a>
+                        </div>
+                        <div class="ps-3 name-calling d-flex" style="font-size: 14px; font-family: 'Nunito', sans-serif; padding-top: 10px">
+                          <p class="pe-2" style="border-right: 1px solid #000000">Faiz</p>
+                          <p class="ps-2">+62203290330293</p>
+                        </div>
+                        <div class="placement ps-3" style="font-size: 14px; font-family: 'Nunito', sans-serif">
+                          <p>alamat lengkap, kecamatan, kabupaten, provinsi</p>
+                        </div>
+                        <div class="ps-3">
+                          <button type="button" class="btn btn-outline-primary rounded-pill" style="width: 100%">Alamat Terpilih</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <b class="ps-3" style="font-size: 15px">Rumah</b>
+            <div class="ps-3 name-calling d-flex" style="font-size: 14px; font-family: 'Nunito', sans-serif; padding-top: 10px">
+              <p class="pe-2" style="border-right: 1px solid #000000">Faiz</p>
+              <p class="ps-2">+62203290330293</p>
+            </div>
+            <div class="placement ps-3" style="font-size: 14px; font-family: 'Nunito', sans-serif">
+              <p>alamat lengkap, kecamatan, kabupaten, provinsi</p>
+            </div> -->
+            <p class="ps-3" style="font-size: 14px">Belum ada alamat yang terdaftar</p>
+            <div class="btn-alamat">
+              <button type="button" class="btn btn-outline-primary rounded" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="bi bi-plus-lg"></i> Buat Alamat Pengiriman</button>
+            </div>
+            <!-- modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Opsi Pengiriman</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 200px"></button>
+                  </div>
+                  <div class="body">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                      <div class="accordion-item mb-2">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">JNE</button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <a href="#" class="text-dark" style="text-decoration: none">Reguler (Rp 0)</a><br />
+                            <a href="#" class="text-secondary" style="font-size: 14px; text-decoration: none">Dikirim dihari yang sama sebelum pukul 14:00</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item mb-2">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">JNT</button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <a href="#" class="text-dark" style="text-decoration: none">Reguler (Rp 0)</a><br />
+                            <a href="#" class="text-secondary" style="font-size: 14px; text-decoration: none">Dikirim dihari yang sama sebelum pukul 14:00</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item mb-2">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">Sicepat</button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <a href="#" class="text-dark" style="text-decoration: none">Reguler (Rp 0)</a><br />
+                            <a href="#" class="text-secondary" style="font-size: 14px; text-decoration: none">Dikirim dihari yang sama sebelum pukul 14:00</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Alamat Pengiriman</h5>
+                    <button type="button" class="btn-close" style="margin-left: 200px" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Label Alamat</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Cth : (Rumah, Kantor)" style="background: transparent" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nama Penerima</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nama Penerima" style="background: transparent" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">No. Handphone</label>
+                        <div class="input-group">
+                          <div class="input-group-text">+62</div>
+                          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan No. Handphone" style="background: transparent" />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Provinsi</label>
+                        <div class="col-12">
+                          <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                          <select class="form-select" id="inlineFormSelectPref">
+                            <option selected>Pilih Provinsi</option>
+                            <option value="1">Bali</option>
+                            <option value="2">Banten</option>
+                            <option value="3">DKI Jakarta</option>
+                            <option value="3">Gorontalo</option>
+                            <option value="3">Jambi</option>
+                            <option value="3">Jawa Barat</option>
+                            <option value="3">Jawa tengah</option>
+                            <option value="3">Jawa Timur</option>
+                            <option value="3">Kalimantan Barat</option>
+                            <option value="3">Kalimantan Selatan</option>
+                            <option value="3">Kalimantan Tengah</option>
+                            <option value="3">Kalimantan Timur</option>
+                            <option value="3">Bangka Belitung</option>
+                            <option value="3">Kepulauan Riau</option>
+                            <option value="3">Lampung</option>
+                            <option value="3">Maluku</option>
+                            <option value="3">Maluku Utara</option>
+                            <option value="3">Papua</option>
+                            <option value="3">Papua Barat</option>
+                            <option value="3">Riau</option>
+                            <option value="3">Sulawesi Barat</option>
+                            <option value="3">Sulawesi Selatan</option>
+                            <option value="3">Sulawesi Tengah</option>
+                            <option value="3">Sulawesi Tenggara</option>
+                            <option value="3">Sulawesi Utara</option>
+                            <option value="3">Sumatra Barat</option>
+                            <option value="3">Sumatra Selatan</option>
+                            <option value="3">Sumatra Utara</option>
+                            <option value="3">Kalimantan Utara</option>
+                            <option value="3">Nanggroe Aceh Darussalam</option>
+                            <option value="3">Bengkulu</option>
+                            <option value="3">Nusa Tenggara Barat (NTB)</option>
+                            <option value="3">Nusa Tenggara Timur (NTT)</option>
+                            <option value="3">DI Yogyakarta</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Kota/Kabupaten</label>
+                        <div class="col-12">
+                          <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                          <select class="form-select" id="inlineFormSelectPref">
+                            <option selected>Pilih Kota/Kabupaten</option>
+                            <option value="1">Bali</option>
+                            <option value="2">Banten</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Kecamatan</label>
+                        <div class="col-12">
+                          <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                          <select class="form-select" id="inlineFormSelectPref">
+                            <option selected>Pilih Kecamatan</option>
+                            <option value="1">Bali</option>
+                            <option value="2">Banten</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Alamat Lengkap</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Alamat Lengkap" style="background: transparent" />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="p-3">
+                    <a href="checkout.html"><button type="button" class="btn btn-primary w-100">Simpan Alamat</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="metode-pembayaran ms-3">
+          <div class="card shadow-sm" style="width: 500px; height: 225px">
+            <div class="card-body">
+              <p class="text-metode p-3">Metode Pembayaran & Opsi Pembayaran</p>
+              <div class="btn-metode ps-3 pe-3 pb-2">
+                <button type="button" class="btn btn-outline-primary w-100 rounded-pill">Pilih Metode Pembayaran</button>
+              </div>
+              <div class="opsi-pengiriman ps-3 pe-3">
+                <button type="button" class="btn btn-primary w-100 rounded-pill" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-truck pe-2"></i>Opsi Pengiriman</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pesanan-checkout d-flex" style="padding-top: 20px">
+        <div class="card cart shadow-sm p-3 bg-body rounded" style="width: 725px">
+          <div class="img-deskripsi">
+            <div class="card-body">
+              <a style="font-family: 'Nunito', sans-serif; font-weight: 600; color: #5a5a5a">Pesanan 1</a>
+            </div>
+            <div class="img-pesanan d-flex" style="padding-bottom: 10px; border-bottom: 1px solid #c1c1c1; justify-content: space-between">
+              <img src="assets/image/book1.jpg" alt="" style="width: 85px; height: 130px; padding-left: 20px; padding-bottom: 30px" />
+              <div class="text">
+                <p class="title-pesanan ms-1">Love From A to Z</p>
+                <b class="price ms-1">Rp 93.000</b>
+              </div>
+              <div class="quantity d-flex">
+                <div class="minus" style="font-size: 20px; padding-left: 60px; padding-top: 20px">
+                  <button id="minus" style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-dash-circle"></i></button>
+                </div>
+                <div class="input" style="padding-top: 20px">
+                  <input id="input" type="number" style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
+                </div>
+                <div class="plus" style="font-size: 20px; padding-top: 20px">
+                  <button id="plus" style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-plus-circle"></i></button>
+                </div>
+              </div>
+              <div class="price-total" style="padding-top: 13px; padding-left: 90px">
+                <p style="font-size: 14px; color: #0060ae"><b>Rp 93.000</b></p>
+                <a style="font-size: 14px"><i class="bi bi-trash3 ms-1"></i>Hapus</a>
+              </div>
+            </div>
+            <div class="img-pesanan d-flex" style="padding-top: 40px; padding-bottom: 50px; justify-content: space-between">
+              <img src="assets/image/book1.jpg" alt="" style="width: 85px; height: 130px; padding-left: 20px; padding-bottom: 30px" />
+              <div class="text">
+                <p class="title-pesanan ms-1">Love From A to Z</p>
+                <b class="price ms-1">Rp 93.000</b>
+              </div>
+              <div class="quantity d-flex">
+                <div class="minus" style="font-size: 20px; padding-left: 60px; padding-top: 20px">
+                  <button id="minus2" style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-dash-circle"></i></button>
+                </div>
+                <div class="input" style="padding-top: 20px">
+                  <input id="input2" type="number" style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
+                </div>
+                <div class="plus" style="font-size: 20px; padding-top: 20px">
+                  <button id="plus2" style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-plus-circle"></i></button>
+                </div>
+              </div>
+              <div class="price-total" style="padding-top: 13px; padding-left: 90px">
+                <p style="font-size: 14px; color: #0060ae"><b>Rp 93.000</b></p>
+                <a style="font-size: 14px"><i class="bi bi-trash3 ms-1"></i>Hapus</a>
+              </div>
+            </div>
+          </div>
+          <div class="total-pesanan d-flex" style="padding-top: 10px; border-top: 1px solid #6e6e6e; justify-content: space-between">
+            <p>Total Pesanan <b>1</b></p>
+            <p><b>Rp 93.000</b></p>
+          </div>
+        </div>
+        <div class="detail-pesanan ms-3">
+          <div class="card shadow-sm p-3 bg-body rounded" style="width: 500px">
+            <h2 class="title-detail">Rincian Belanja</h2>
+            <!-- <div class="kode-promo d-flex p-3" style="justify-content: space-between">
+              <p>Masukkan Kode Promo?</p>
+              <a href="#" style="text-decoration: none">Lihat promo</a>
+            </div>
+            <div class="input-group mb-3 px-3">
+              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+              <span class="input-group-text text-muted" id="inputGroup-sizing-default" style="font-size: 14px">Gunakan</span>
+            </div> -->
+            <div class="total-biaya px-3 pt-5">
+              <p>Total Biaya Belanja</p>
+            </div>
+            <div class="total-belanja d-flex px-3" style="justify-content: space-between">
+              <p>Total Belanja</p>
+              <b>Rp 93.000</b>
+            </div>
+            <div class="biaya-pengiriman d-flex px-3" style="justify-content: space-between">
+              <p>Biaya Pengiriman</p>
+              <b>Rp 37.000</b>
+            </div>
+            <div class="seluruh-total d-flex px-3 pt-3 pb-3" style="justify-content: space-between">
+              <b>Total</b>
+              <b style="color: #0060ae">Rp 130.0000</b>
+            </div>
+            <div class="bayar-pesanan" style="margin: 0px 20px 0px 20px">
+              <button type="button" class="btn btn-outline-primary rounded-pill w-100">Bayar Pesanan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+      const minusButton = document.getElementById('minus');
+      const plusButton = document.getElementById('plus');
+      const inputField = document.getElementById('input');
+
+      minusButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField.value) || 1;
+        inputField.value = currentValue - 1;
+      });
+
+      plusButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField.value) || 0;
+        inputField.value = currentValue + 1;
+      });
+    </script>
+    <script>
+      const minusButton2 = document.getElementById('minus2');
+      const plusButton2 = document.getElementById('plus2');
+      const inputField2 = document.getElementById('input2');
+
+      minusButton2.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField2.value) || 1;
+        inputField2.value = currentValue - 1;
+      });
+
+      plusButton2.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField2.value) || 0;
+        inputField2.value = currentValue + 1;
+      });
+    </script>
+  </body>
+</html>

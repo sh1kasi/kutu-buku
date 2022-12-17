@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- icon css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+
+    <!-- js -->
+    <link rel="stylesheet" href="assets/js/script.js" />
+    <title>Love From A To Z</title>
+  </head>
+  <body>
+    <img class="wa-icon fixed-bottom" src="assets/image/icon-wa-removebg-preview (1).png" alt="" />
+    <!-- navbar -->
+    <nav class="row navbar-light shadow mb-5 bg-body rounded fixed-top">
+      <div class="col-md-3" style="padding-top: 15px; padding-bottom: 15px">
+        <a class="merk navbar-brand" href="kutubuku.html">
+          <i class="icon-buku bi bi-book d-inline-block align-text-top ms-5">KUTU BUKU</i>
+        </a>
+      </div>
+      <div class="col-md-2" style="padding-top: 15px">
+        <!-- <button class="btn-kategori dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Kategori</button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul> -->
+        <button class="btn-kategori" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Kategori <i class="bi bi-chevron-down"></i></button>
+        <div class="collapse" id="collapseExample">
+          <div class="container">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis eius, exercitationem cumque dignissimos explicabo iusto saepe provident iure quam porro placeat veniam deserunt nostrum ea expedita, corrupti, molestias
+            necessitatibus nesciunt?
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5" style="padding-top: 15px">
+        <form class="form-search">
+          <input class="searching form-control me-2" type="search" placeholder="Cari Produk, Judul Buku, Penulis" aria-label="Search" />
+          <i class="bi bi-search"></i>
+        </form>
+      </div>
+      <div class="col-md-1" style="padding-top: 15px">
+        <i class="akun bi bi-person-circle"></i>
+      </div>
+      <div class="col-md-1" style="padding-top: 15px">
+        <i class="keranjang bi bi-cart2"></i>
+      </div>
+    </nav>
+    <!-- tutup navbar -->
+
+    <!-- isi-buku1 -->
+    <div class="buku1 row row-cols-1 row-cols-md-3 g-0">
+      <div class="col-1" style="padding-top: 120px; padding-left: 0px">
+        <div class="card shadow-sm p-3 bg-light rounded" style="margin-bottom: 35px; width: 215px; position: -webkit-sticky; position: sticky; top: 90px">
+          <img src="assets/image/book1.jpg" style="height: 320px; width: 180px" alt="..." />
+        </div>
+      </div>
+      <div class="col judul" style="padding-top: 125px; padding-left: 30px">
+        <p class="author-buku1">S.K. Ali</p>
+        <p class="judul-buku1" id="desk">Love from A to Z</p>
+        <div class="daftar-format d-flex" style="justify-content: space-betwwen; font-size: 15px">
+          <div class="deskripsi">
+            <a href="#desk" class="link"><p>Deskripsi Buku</p></a>
+          </div>
+          <div class="detail ms-2">
+            <a href="#detail" class="link"><p style="font-size: 15px">Detail Buku</p></a>
+          </div>
+        </div>
+        <div class="desc pt-3">
+          <h6>Deskripsi Buku</h6>
+          <p id="detail" class="isi-desc" style="font-size: 14px">
+            Buku ini mengangkat isu Islamofobia dan bersetting di Doha, Qatar. Penulis menghadirkan Islamofobia yang sering dihadapi wanita berhijab seperti Zayneb (tokoh utama). Tapi penulis tidak hanya menggambarkan sisi buruk yang
+            dialami oleh Muslim di negara di mana Muslim adalah kaum minoritas, penulis juga menunjukkan kepada kita bagaimana tokoh-tokohnya mengamalkan ajaran Islam dalam kehidupan sehari-hari, serta bagaimana Muslim menjalin persahabatan
+            dan memelihara sikap saling menghargai dengan non-Muslim.
+          </p>
+        </div>
+        <div class="detail d-flex" style="justify-content: space-between">
+          <div class="detail1">
+            <h6><b>Detail</b></h6>
+            <span><b>Jumlah Halaman</b></span>
+            <p>390</p>
+            <span><b>Tanggal Terbit</b></span>
+            <p>14 Jun 2022</p>
+            <span><b>ISBN</b></span>
+            <p>9786232791244</p>
+            <span><b>Bahasa</b></span>
+            <p>Indonesia</p>
+          </div>
+          <div class="detail2" style="padding-top: 25px; padding-bottom: 20px">
+            <span><b>Penerbit</b></span>
+            <p class="text-primary">Republika Penerbit</p>
+            <span><b>Berat</b></span>
+            <p>0.329 kg</p>
+            <span><b>Lebar</b></span>
+            <p>15.5 cm</p>
+            <span><b>Panjang</b></span>
+            <p>20 cm</p>
+          </div>
+        </div>
+      </div>
+      <div class="col pembayaran" style="padding-top: 105px; width: 18rem; height: 100px">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">Ingin beli berapa?</h6>
+          <p class="card-text" style="font-weight: 500">Jumlah Barang</p>
+          <div class="quantity d-flex" style="border-bottom: 1px solid rgb(214, 214, 214)">
+            <div class="minus" style="font-size: 20px">
+              <button id="minus" style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-dash-circle"></i></button>
+            </div>
+            <div class="input">
+              <input id="input" type="number" style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
+            </div>
+            <div class="plus" style="font-size: 20px">
+              <button id="plus" style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-plus-circle"></i></button>
+            </div>
+          </div>
+          <div class="subtotal pt-3" style="color: #6d6d6d">
+            <h6>Subtotal</h6>
+            <div class="harga">
+              <p style="color: #0060ae"><b>Rp 93.000</b></p>
+            </div>
+          </div>
+          <div class="row row-cols-1 row-cols-md-3 g-5">
+            <div class="col keranjang">
+              <a href="keranjang.html"
+                ><button type="button" class="btn btn-outline-primary" style="width: 140px; height: 45px"><i class="bi bi-basket2 me-2"></i>Keranjang</button></a
+              >
+            </div>
+            <div class="col beli-sekarang">
+              <a href="checkout.html"><button class="btn btn-primary rounded" type="button" style="width: 140px; height: 45px">Beli Sekarang</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-top">
+      <div class="subscribe">
+        <p style="padding-top: 40px; padding-left: 40px; padding-bottom: 40px">Kejutan spesial dari kami hanya untukmu</p>
+      </div>
+      <div class="subscribe-box">
+        <input style="height: 40px; width: 500px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border: none" type="text" id="fname" name="fname" />
+        <span style="height: 40px; background-color: #0060ae" class="daftar text-light" id="basic-addon2">Daftar</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom row-cols-md-5">
+      <div class="belanja col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Belanja</h6>
+        <p style="font-size: 15px">Berbelanja</p>
+        <p style="font-size: 15px">pembayaran</p>
+        <p style="font-size: 15px">Pengiriman</p>
+      </div>
+      <div class="tentang-kami col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Tentang Kutu Buku</h6>
+        <p style="font-size: 15px">Tentang Kami</p>
+        <p style="font-size: 15px">Toko Kami</p>
+        <p style="font-size: 15px">Kerjasama</p>
+      </div>
+      <div class="lainnya col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Lainnya</h6>
+        <p style="font-size: 15px">Syarat & Ketentuan</p>
+        <p style="font-size: 15px">Kebijakan & Privasi</p>
+        <p style="font-size: 15px">Bantuan</p>
+        <p style="font-size: 15px">Hubungi Kami</p>
+      </div>
+      <div class="aplikasi-seluler col-md-2">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Aplikasi Seluler Kami</h6>
+        <p style="font-size: 15px">Download aplikasi <b>project.book-test</b> yang tersedia di seluruh perangkat iOS dan Android</p>
+        <img src="assets/image/play-store.png" alt="" style="width: 90px" />
+        <img src="assets/image/app-store.png" alt="" style="width: 90px" />
+      </div>
+    </div>
+    <!-- tutup footer -->
+
+    <!-- footer sosmed -->
+    <div class="footer-sosmed">
+      <div class="logo">
+        <i class="icon-buku bi bi-book d-inline-block align-text-top ms-5"><b>KUTU BUKU</b></i>
+      </div>
+      <div class="text-footer-sosmed">
+        <h5 style="margin-top: 8px; color: #6e6e6e">Toko buku online terbesar, terlengkap dan terpercaya di Indonesia</h5>
+      </div>
+      <div class="icon-sosmed">
+        <img src="assets/image/icon-sosmed.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+        <img src="assets/image/icon-sosmed2.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+        <img src="assets/image/icon-sosmed3.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+      </div>
+    </div>
+    <!-- tutup footer sosmed -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+      const minusButton = document.getElementById('minus');
+      const plusButton = document.getElementById('plus');
+      const inputField = document.getElementById('input');
+
+      minusButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField.value) || 1;
+        inputField.value = currentValue - 1;
+      });
+
+      plusButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField.value) || 0;
+        inputField.value = currentValue + 1;
+      });
+    </script>
+  </body>
+</html>

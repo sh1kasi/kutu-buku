@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <!-- my css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+
+    <title>Keranjang | KutuBuku</title>
+  </head>
+  <body>
+    <img class="wa-icon fixed-bottom" src="assets/image/icon-wa-removebg-preview (1).png" alt="" />
+    <!-- navbar -->
+    <nav class="row navbar-light shadow mb-5 bg-body rounded fixed-top d-flex">
+      <div class="col-md-3" style="padding-top: 15px; padding-bottom: 15px">
+        <a class="merk navbar-brand" href="kutubuku.html">
+          <i class="icon-buku bi bi-book d-inline-block align-text-top ms-5">KUTU BUKU</i>
+        </a>
+      </div>
+      <div class="col-md-2" style="padding-top: 15px">
+        <button class="btn-kategori" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Kategori <i class="bi bi-chevron-down"></i></button>
+      </div>
+      <div class="autocomplete col-md-5" style="padding-top: 15px">
+        <form autocomplete="off" class="form-search"><input id="myInput" class="searching form-control me-2" type="search" placeholder="Cari Produk, Judul Buku, Penulis" aria-label="Search" /></form>
+      </div>
+      <div class="col-md-1" style="padding-top: 25px">
+        <a href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" style="color: #155183">Masuk</a>
+      </div>
+      <!-- <div class="dropdown col-md-1" style="padding-top: 15px">
+        <a class="dropdown" id="dropdownMenuButton1" data-bs-toggle="dropdown"> <i class="akun bi bi-person-circle"></i> </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1" style="border-radius: 10px">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <div class="dropdown-divider"></div>
+          <li><a class="dropdown-item text-danger" href="#">Keluar</a></li>
+        </ul>
+      </div> -->
+
+      <div class="col-md-1" style="padding-top: 15px">
+        <i class="keranjang bi bi-cart2"></i>
+      </div>
+      <div class="category row row-cols-1 row-cols-md-4 g-3 collapse" id="collapseExample">
+        <div class="col left-category">
+          <p>Buku</p>
+          <p>E-Book</p>
+          <p>Alat Tulis</p>
+          <p>Mainan</p>
+        </div>
+        <div class="col right-category">jfdwjnedownmed</div>
+      </div>
+    </nav>
+
+    <!-- account -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content p-3">
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input style="border: none; border-bottom: 1px solid" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input style="border: none; border-bottom: 1px solid" type="password" class="form-control" id="myInputPw" />
+            </div>
+            <input type="checkbox" onclick="myFunction()" />Show Password
+            <div class="mb-3 text-center">
+              <a href="#">Lupa Kata Sandi</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 text-center">Masuk</button>
+            <div class="mb-3 mt-3">
+              <p class="text-center">Belum mendaftar? <a href="daftar.html">Daftar</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h4 class="text-keranjang">Keranjang</h4>
+    </div>
+    <div class="d-flex">
+      <div class="delete-keranjang" style="padding-left: 115px; padding-bottom: 20px">
+        <div class="cart card card-body shadow-sm p-3 bg-body rounded">
+          <a href="#" class="card-link" style="padding-left: 450px; text-decoration: none; color: #000; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px">Hapus beberapa</a>
+        </div>
+      </div>
+    </div>
+    <div class="pesanan d-flex" style="padding-bottom: 100px; border-bottom: 1px solid #a5a5a5">
+      <div class="card cart shadow-sm p-3 bg-body rounded">
+        <div class="img-deskripsi">
+          <div class="card-body">
+            <a style="font-family: 'Nunito', sans-serif; font-weight: 600; color: #5a5a5a">Pesanan 1</a>
+          </div>
+          <div class="img-pesanan d-flex" style="justify-content: space-evenly; padding-bottom: 10px; border-bottom: 1px solid #c1c1c1">
+            <img src="assets/image/book1.jpg" alt="" style="width: 85px; height: 130px; padding-left: 20px; padding-bottom: 30px" />
+            <div class="text">
+              <p class="title-pesanan ms-1 me-2">Love From A to Z</p>
+              <b class="price ms-1">Rp 93.000</b>
+            </div>
+            <div class="quantity d-flex">
+              <div class="minus" style="font-size: 20px; padding-top: 20px">
+                <button id="minus" style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-dash-circle"></i></button>
+              </div>
+              <div class="input" style="padding-top: 20px">
+                <input id="input" type="number" style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
+              </div>
+              <div class="plus" style="font-size: 20px; padding-top: 20px">
+                <button id="plus" style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-plus-circle"></i></button>
+              </div>
+            </div>
+            <div class="price-total" style="padding-top: 13px; padding-left: 30px; margin-right: 10px">
+              <p style="font-size: 14px; color: #0060ae"><b>Rp 93.000</b></p>
+              <a style="font-size: 14px"><i class="bi bi-trash3 ms-1"></i>Hapus</a>
+            </div>
+          </div>
+          <div class="img-pesanan d-flex" style="justify-content: space-evenly; padding-top: 40px">
+            <img src="assets/image/book1.jpg" alt="" style="width: 85px; height: 130px; padding-left: 20px; padding-bottom: 30px" />
+            <div class="text">
+              <p class="title-pesanan ms-1 me-2">Love From A to Z</p>
+              <b class="price ms-1">Rp 93.000</b>
+            </div>
+            <div class="quantity d-flex">
+              <div class="minus2" style="font-size: 20px; padding-left: 60px; padding-top: 20px">
+                <button id="minus2" style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-dash-circle"></i></button>
+              </div>
+              <div class="input2" style="padding-top: 20px">
+                <input id="input2" type="number" style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
+              </div>
+              <div class="plus2" style="font-size: 20px; padding-top: 20px">
+                <button id="plus2" style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i class="bi bi-plus-circle"></i></button>
+              </div>
+            </div>
+            <div class="price-total" style="padding-top: 13px; padding-left: 30px; margin-right: 10px">
+              <p style="font-size: 14px; color: #0060ae"><b>Rp 93.000</b></p>
+              <a style="font-size: 14px"><i class="bi bi-trash3 ms-1"></i>Hapus</a>
+            </div>
+          </div>
+        </div>
+        <div class="total-pesanan d-flex" style="padding-top: 10px; border-top: 1px solid #6e6e6e; justify-content: space-between">
+          <p>Total Pesanan <b>1</b></p>
+          <p><b>Rp 93.000</b></p>
+        </div>
+      </div>
+      <div class="detail-pesanan ms-3">
+        <div class="card shadow-sm p-3 bg-body rounded" style="width: 500px">
+          <h2 class="title-detail">Rincian Belanja</h2>
+          <div class="harga d-flex" style="justify-content: space-between">
+            <p class="text-detail"><b>Total Biaya Belanja</b></p>
+            <p class="harga-detail">Rp 93.000</p>
+          </div>
+          <div class="btn-detail" style="padding-top: 30px">
+            <a href="checkout.html"><button class="btn btn-primary w-100" type="submit">Lanjut ke Pembayaran</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keranjang belum diisi -->
+    <!-- <div class="keranjang-kosong container" style="margin-top: 100px; padding-top: 50px; padding-bottom: 100px">
+      <div class="empty-cart" style="display: flex; justify-content: center">
+        <img src="assets/image/empty-cart.png" alt="empty cart" />
+        <div class="isi-empty-cart" style="padding-left: 20px">
+          <div class="title-empty-cart" style="padding-top: 70px; padding-bottom: 10px">
+            <b style="font-size: 25px; font-family: 'Nunito', sans-serif">Tas Belanja Kamu Berdebu!</b>
+          </div>
+          <div class="text-empty-cart" style="padding-bottom: 10px"">
+            <p class="text-muted" style="font-family: 'Nunito', sans-serif">
+              Tas belanja kamu masih kosong lho! <br />
+              Mulai belanja sekarang dan dapatkan barang yang <br />
+              kamu inginkan hanya di KutuBuku.
+            </p>
+          </div>
+          <div class="mulai-belanja" style="font-family: 'Nunito',sans-serif;">
+            <a href="kutubuku.html"><button class="btn w-100 text-light" type="button" style="background-color: #0060ae;">Mulai Belanja</button></a>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- tutup Keranjang belum diisi -->
+
+    <!-- footer -->
+    <div class="footer-top">
+      <div class="subscribe">
+        <p style="padding-top: 40px; padding-left: 40px; padding-bottom: 40px">Kejutan spesial dari kami hanya untukmu</p>
+      </div>
+      <div class="subscribe-box">
+        <input style="height: 40px; width: 500px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border: none" type="text" id="fname" name="fname" />
+        <span style="height: 40px; background-color: #0060ae" class="daftar text-light" id="basic-addon2">Daftar</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom row-cols-md-5">
+      <div class="belanja col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Belanja</h6>
+        <p style="font-size: 15px">Berbelanja</p>
+        <p style="font-size: 15px">pembayaran</p>
+        <p style="font-size: 15px">Pengiriman</p>
+      </div>
+      <div class="tentang-kami col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Tentang Kutu Buku</h6>
+        <p style="font-size: 15px">Tentang Kami</p>
+        <p style="font-size: 15px">Toko Kami</p>
+        <p style="font-size: 15px">Kerjasama</p>
+      </div>
+      <div class="lainnya col">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Lainnya</h6>
+        <p style="font-size: 15px">Syarat & Ketentuan</p>
+        <p style="font-size: 15px">Kebijakan & Privasi</p>
+        <p style="font-size: 15px">Bantuan</p>
+        <p style="font-size: 15px">Hubungi Kami</p>
+      </div>
+      <div class="aplikasi-seluler col-md-2">
+        <h6 style="color: #155183; font-size: 18px; margin-bottom: 23px">Aplikasi Seluler Kami</h6>
+        <p style="font-size: 15px">Download aplikasi <b>project.book-test</b> yang tersedia di seluruh perangkat iOS dan Android</p>
+        <img src="assets/image/play-store.png" alt="" style="width: 90px" />
+        <img src="assets/image/app-store.png" alt="" style="width: 90px" />
+      </div>
+    </div>
+    <!-- tutup footer -->
+
+    <!-- footer sosmed -->
+    <div class="footer-sosmed">
+      <div class="logo">
+        <i class="icon-buku bi bi-book d-inline-block align-text-top ms-5"><b>KUTU BUKU</b></i>
+      </div>
+      <div class="text-footer-sosmed">
+        <h5 style="margin-top: 8px; color: #6e6e6e">Toko buku online terbesar, terlengkap dan terpercaya di Indonesia</h5>
+      </div>
+      <div class="icon-sosmed">
+        <img src="assets/image/icon-sosmed.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+        <img src="assets/image/icon-sosmed2.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+        <img src="assets/image/icon-sosmed3.png" class="icon-sosmed" alt="" style="width: 30px; height: 30px" />
+      </div>
+    </div>
+    <!-- tutup footer sosmed -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script>
+      var countries = [
+        'Afghanistan',
+        'Albania',
+        'Algeria',
+        'Andorra',
+        'Angola',
+        'Anguilla',
+        'Antigua &amp; Barbuda',
+        'Argentina',
+        'Armenia',
+        'Aruba',
+        'Australia',
+        'Austria',
+        'Azerbaijan',
+        'Bahamas',
+        'Bahrain',
+        'Bangladesh',
+        'Barbados',
+        'Belarus',
+        'Belgium',
+        'Belize',
+        'Benin',
+        'Bermuda',
+        'Bhutan',
+        'Bolivia',
+        'Bosnia &amp; Herzegovina',
+        'Botswana',
+        'Brazil',
+        'British Virgin Islands',
+        'Brunei',
+        'Bulgaria',
+        'Burkina Faso',
+        'Burundi',
+        'Cambodia',
+        'Cameroon',
+        'Canada',
+        'Cape Verde',
+        'Cayman Islands',
+        'Central Arfrican Republic',
+        'Chad',
+        'Chile',
+        'China',
+        'Colombia',
+        'Congo',
+        'Cook Islands',
+        'Costa Rica',
+        'Cote D Ivoire',
+        'Croatia',
+        'Cuba',
+        'Curacao',
+        'Cyprus',
+        'Czech Republic',
+        'Denmark',
+        'Djibouti',
+        'Dominica',
+        'Dominican Republic',
+        'Ecuador',
+        'Egypt',
+        'El Salvador',
+        'Equatorial Guinea',
+        'Eritrea',
+        'Estonia',
+        'Ethiopia',
+        'Falkland Islands',
+        'Faroe Islands',
+        'Fiji',
+        'Finland',
+        'France',
+        'French Polynesia',
+        'French West Indies',
+        'Gabon',
+        'Gambia',
+        'Georgia',
+        'Germany',
+        'Ghana',
+        'Gibraltar',
+        'Greece',
+        'Greenland',
+        'Grenada',
+        'Guam',
+        'Guatemala',
+        'Guernsey',
+        'Guinea',
+        'Guinea Bissau',
+        'Guyana',
+        'Haiti',
+        'Honduras',
+        'Hong Kong',
+        'Hungary',
+        'Iceland',
+        'India',
+        'Indonesia',
+        'Iran',
+        'Iraq',
+        'Ireland',
+        'Isle of Man',
+        'Israel',
+        'Italy',
+        'Jamaica',
+        'Japan',
+        'Jersey',
+        'Jordan',
+        'Kazakhstan',
+        'Kenya',
+        'Kiribati',
+        'Kosovo',
+        'Kuwait',
+        'Kyrgyzstan',
+        'Laos',
+        'Latvia',
+        'Lebanon',
+        'Lesotho',
+        'Liberia',
+        'Libya',
+        'Liechtenstein',
+        'Lithuania',
+        'Love from A to Z',
+        'Luxembourg',
+        'Macau',
+        'Macedonia',
+        'Madagascar',
+        'Malawi',
+        'Malaysia',
+        'Maldives',
+        'Mali',
+        'Malta',
+        'Marshall Islands',
+        'Mauritania',
+        'Mauritius',
+        'Mexico',
+        'Micronesia',
+        'Moldova',
+        'Monaco',
+        'Mongolia',
+        'Montenegro',
+        'Montserrat',
+        'Morocco',
+        'Mozambique',
+        'Myanmar',
+        'Namibia',
+        'Nauro',
+        'Nepal',
+        'Netherlands',
+        'Netherlands Antilles',
+        'New Caledonia',
+        'New Zealand',
+        'Nicaragua',
+        'Niger',
+        'Nigeria',
+        'North Korea',
+        'Norway',
+        'Oman',
+        'Pakistan',
+        'Palau',
+        'Palestine',
+        'Panama',
+        'Papua New Guinea',
+        'Paraguay',
+        'Peru',
+        'Philippines',
+        'Poland',
+        'Portugal',
+        'Puerto Rico',
+        'Qatar',
+        'Reunion',
+        'Romania',
+        'Russia',
+        'Rwanda',
+        'Saint Pierre &amp; Miquelon',
+        'Samoa',
+        'San Marino',
+        'Sao Tome and Principe',
+        'Saudi Arabia',
+        'Senegal',
+        'Serbia',
+        'Seychelles',
+        'Sierra Leone',
+        'Singapore',
+        'Slovakia',
+        'Slovenia',
+        'Solomon Islands',
+        'Somalia',
+        'South Africa',
+        'South Korea',
+        'South Sudan',
+        'Spain',
+        'Sri Lanka',
+        'St Kitts &amp; Nevis',
+        'St Lucia',
+        'St Vincent',
+        'Sudan',
+        'Suriname',
+        'Swaziland',
+        'Sweden',
+        'Switzerland',
+        'Syria',
+        'Taiwan',
+        'Tajikistan',
+        'Tanzania',
+        'Thailand',
+        "Timor L'Este",
+        'Togo',
+        'Tonga',
+        'Trinidad &amp; Tobago',
+        'Tunisia',
+        'Turkey',
+        'Turkmenistan',
+        'Turks &amp; Caicos',
+        'Tuvalu',
+        'Uganda',
+        'Ukraine',
+        'United Arab Emirates',
+        'United Kingdom',
+        'United States of America',
+        'Uruguay',
+        'Uzbekistan',
+        'Vanuatu',
+        'Vatican City',
+        'Venezuela',
+        'Vietnam',
+        'Virgin Islands (US)',
+        'Yemen',
+        'Zambia',
+        'Zimbabwe',
+      ];
+    </script>
+    <script>
+      function autocomplete(inp, arr) {
+        /*the autocomplete function takes two arguments,
+    the text field element and an array of possible autocompleted values:*/
+        var currentFocus;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener('input', function (e) {
+          var a,
+            b,
+            i,
+            val = this.value;
+          /*close any already open lists of autocompleted values*/
+          closeAllLists();
+          if (!val) {
+            return false;
+          }
+          currentFocus = -1;
+          /*create a DIV element that will contain the items (values):*/
+          a = document.createElement('DIV');
+          a.setAttribute('id', this.id + 'autocomplete-list');
+          a.setAttribute('class', 'autocomplete-items');
+          /*append the DIV element as a child of the autocomplete container:*/
+          this.parentNode.appendChild(a);
+          /*for each item in the array...*/
+          for (i = 0; i < arr.length; i++) {
+            /*check if the item starts with the same letters as the text field value:*/
+            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+              /*create a DIV element for each matching element:*/
+              b = document.createElement('DIV');
+              /*make the matching letters bold:*/
+              b.innerHTML = '<strong>' + arr[i].substr(0, val.length) + '</strong>';
+              b.innerHTML += arr[i].substr(val.length);
+              /*insert a input field that will hold the current array item's value:*/
+              b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+              /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener('click', function (e) {
+                /*insert the value for the autocomplete text field:*/
+                inp.value = this.getElementsByTagName('input')[0].value;
+                /*close the list of autocompleted values,
+                (or any other open lists of autocompleted values:*/
+                closeAllLists();
+              });
+              a.appendChild(b);
+            }
+          }
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener('keydown', function (e) {
+          var x = document.getElementById(this.id + 'autocomplete-list');
+          if (x) x = x.getElementsByTagName('div');
+          if (e.keyCode == 40) {
+            /*If the arrow DOWN key is pressed,
+          increase the currentFocus variable:*/
+            currentFocus++;
+            /*and and make the current item more visible:*/
+            addActive(x);
+          } else if (e.keyCode == 38) {
+            //up
+            /*If the arrow UP key is pressed,
+          decrease the currentFocus variable:*/
+            currentFocus--;
+            /*and and make the current item more visible:*/
+            addActive(x);
+          } else if (e.keyCode == 13) {
+            /*If the ENTER key is pressed, prevent the form from being submitted,*/
+            e.preventDefault();
+            if (currentFocus > -1) {
+              /*and simulate a click on the "active" item:*/
+              if (x) x[currentFocus].click();
+            }
+          }
+        });
+        function addActive(x) {
+          /*a function to classify an item as "active":*/
+          if (!x) return false;
+          /*start by removing the "active" class on all items:*/
+          removeActive(x);
+          if (currentFocus >= x.length) currentFocus = 0;
+          if (currentFocus < 0) currentFocus = x.length - 1;
+          /*add class "autocomplete-active":*/
+          x[currentFocus].classList.add('autocomplete-active');
+        }
+        function removeActive(x) {
+          /*a function to remove the "active" class from all autocomplete items:*/
+          for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove('autocomplete-active');
+          }
+        }
+        function closeAllLists(elmnt) {
+          /*close all autocomplete lists in the document,
+      except the one passed as an argument:*/
+          var x = document.getElementsByClassName('autocomplete-items');
+          for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+              x[i].parentNode.removeChild(x[i]);
+            }
+          }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener('click', function (e) {
+          closeAllLists(e.target);
+        });
+      }
+    </script>
+    <script>
+      autocomplete(document.getElementById('myInput'), countries);
+    </script>
+    <script>
+      const minusButton = document.getElementById('minus');
+      const plusButton = document.getElementById('plus');
+      const inputField = document.getElementById('input');
+
+      minusButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField.value) || 1;
+        inputField.value = currentValue - 1;
+      });
+
+      plusButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue = Number(inputField.value) || 0;
+        inputField.value = currentValue + 1;
+      });
+    </script>
+    <script>
+      const minusButton2 = document.getElementById('minus2');
+      const plusButton2 = document.getElementById('plus2');
+      const inputField2 = document.getElementById('input2');
+
+      minusButton2.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue2 = Number(inputField2.value) || 1;
+        inputField2.value = currentValue2 - 1;
+      });
+
+      plusButton2.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentValue2 = Number(inputField2.value) || 0;
+        inputField2.value = currentValue2 + 1;
+      });
+    </script>
+    <script>
+      function myFunction() {
+        var x = document.getElementById('myInputPw');
+        if (x.type === 'password') {
+          x.type = 'text';
+        } else {
+          x.type = 'password';
+        }
+      }
+    </script>
+  </body>
+</html>

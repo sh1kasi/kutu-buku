@@ -1,0 +1,23 @@
+Fitur - fitur project e-commerce buku dan lain lain
+
+1. ada kategori dibentuk dengan icon (alat tulis, mainan, buku pilihan, ebook)
+2. produk - produk dibentuk dengan card
+3. di navbar nya nanti ada search, login, dan keranjang 
+4. dibagian searchnya pakai live search (sudgested search)
+5. ada rekomendasi buku - buku / buku  
+	* perekomendasian dilakukan berdasarkan buku yang baru terbit atau buku yang sedang diskon
+	*
+6. memberikan promo/diskon(berlaku) pada buku tertentu
+	* terdapat voucher untuk mendapatkan potongan harga
+	* memberikan potongan harga pada buku yang baru terbit
+7. memberikan carousel untuk menampilkan promo atau buku yang baru terbit
+8. pada samping produk terdapat filter yang dapat mengcostum harga, stock, dan kategori
+9. membuat login dengan bentuk pop up, register tetap berpindah halaman
+10. user dapat menambah kan produk pada keranjang dan checkout (setelah melakukan checkout, user akan berpindah ke halaman 
+ checkout yang berisi alamat tujuan pengiriman, metode pembayaran, detail pembayaran. Setelah user melakukan checkout, 
+ terdapat sisa waktu pembayaran selama 24 jam, terdapat juga cara melakukan pembayaran. User dapat langsung kembali ke halaman utama, atau melihat riwayat pesanan) 
+11 user dapat menghubungi kendala pada website lewat whatsapp
+12. terdapat deskripsi pada setiap prooduk
+13. user dapat mencantumkan email untuk mendapatkan notifikasi tentang diskon/ produk terbaru
+14. memberikan footer untuk user mengarahkan pada akun sosial media 
+15. user dapat melakukan edit seperti biodata, daftar alamat. User dapat melihat daftar transaksi melalui "Pesanan Saya"

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <body>
+      <button class="btn" data-target="kotak">Start Animation</button>
+      <button class="btn" data-target="kotak2">Start Animation</button>
+      <button class="tombol" data-target="bulat">Start Animation</button>
+      <button class="tombol" data-target="bulat2">Start Animation</button>
+
+      <div class="kotak" id="kotak" style="background: #98bf21; height: 100px; width: 100px; display: none; top: 90px; position: absolute"></div>
+      <div class="kotak" id="kotak2" style="background: #98bf21; height: 100px; width: 100px; display: none; top: 200px; position: absolute"></div>
+      <div class="tombol" id="bulat" style="background: #98bf21; height: 100px; width: 100px; display: none; top: 250px; position: absolute"></div>
+      <div class="tombol" id="bulat2" style="background: #98bf21; height: 100px; width: 100px; display: none; top: 300px; position: absolute"></div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      // $(document).ready(function () {
+      //   $('div').mouseenter(function () {
+      //     $('div').hide().appendTo('div').show('slow');
+      //     // $('div').mouseleave(function () {
+      //     //   $('div').animate({ top: '100px' });
+      //     // });
+      //   });
+      //   $('div').mouseenter(function () {
+      //     $('div').hide();
+      //   });
+      // });
+      $(document).ready(function () {
+        $('.btn').mouseenter(function () {
+          $('.kotak').css('display', 'block');
+          var target = $(this).data('target');
+          $(`#${target}`).css('display', 'none');
+        });
+      });
+      $(document).ready(function () {
+        $('.tombol').mouseenter(function () {
+          $('.bulat').css('display', 'block');
+          var target = $(this).data('target');
+          $(`#${target}`).css('display', 'none');
+        });
+      });
+      // });
+
+      // $(document).ready(function () {
+      //   $('.btn2').mouseenter(function () {
+      //     // $('#kotak2').mouseenter(function () {
+      //     $('#kotak2').css('background-color', 'yellow');
+      //     $('#kotak2').mouseleave(function () {
+      //       $('#kotak2').css('background-color', 'lightgray');
+      //     });
+      //   });
+      // });
+      // });
+    </script>
+  </head>
+</html>
