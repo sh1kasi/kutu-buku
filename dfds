@@ -1,0 +1,31 @@
+[33mcommit e1b8c41712e32e2de4e3f01471cc073cad9dbeb4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Reflog: HEAD@{0} (sh1kasi <elfarrel07@gmail.com>)
+Reflog message: reset: moving to HEAD~1
+Author: sh1kasi <elfarrel07@gmail.com>
+Date:   Thu Nov 10 19:41:26 2022 +0700
+
+    rev-1
+
+[33mcommit d8c697f730ad255a70812741e8dc7340c8af0d7d[m[33m ([m[1;31morigin/main[m[33m)[m
+Reflog: HEAD@{1} (sh1kasi <elfarrel07@gmail.com>)
+Reflog message: commit: 2nd commit
+Author: sh1kasi <elfarrel07@gmail.com>
+Date:   Wed Dec 21 13:04:20 2022 +0700
+
+    2nd commit
+
+[33mcommit e1b8c41712e32e2de4e3f01471cc073cad9dbeb4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Reflog: HEAD@{2} (sh1kasi <elfarrel07@gmail.com>)
+Reflog message: Branch: renamed refs/heads/master to refs/heads/main
+Author: sh1kasi <elfarrel07@gmail.com>
+Date:   Thu Nov 10 19:41:26 2022 +0700
+
+    rev-1
+
+[33mcommit e1b8c41712e32e2de4e3f01471cc073cad9dbeb4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Reflog: HEAD@{4} (sh1kasi <elfarrel07@gmail.com>)
+Reflog message: commit (initial): rev-1
+Author: sh1kasi <elfarrel07@gmail.com>
+Date:   Thu Nov 10 19:41:26 2022 +0700
+
+    rev-1
