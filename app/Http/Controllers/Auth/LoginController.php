@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -16,11 +17,24 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        if(Auth::attempt($request->only('email', 'password'))){
-            return redirect()->route('category.index');
+        // dd($request);
+
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            'password'=> 'required|min:6|'
+        ]);
+
+
+
+        if(Auth::attempt($credentials)){
+            // return redirect('/buku');
+            $request->session()->regenerate();
+            return redirect()->intended('/buku')->with('success', 'Selamat datang kembali ' . auth()->user()->name . '!');
         }
 
-        return redirect('/buku');
+        // dd('gagal');
+
+        return back()->with('error', 'Login gagal! masukkan email dan password dengan benar!');
     }
 
     public function logout()

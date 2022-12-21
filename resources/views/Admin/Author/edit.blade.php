@@ -21,7 +21,7 @@
                             </div>
                             <div class="mb-3">
                               <label for="exampleInputPassword1" class="form-label">Alamat</label>
-                              <input type="text" id="slug" name="slug" class="form-control" value="{{ $author->address }}" placeholder="Masukkan alamat" id="exampleInputPassword1">
+                              <input type="text" id="address" name="address" class="form-control" value="{{ $author->address }}" placeholder="Masukkan alamat" id="exampleInputPassword1">
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                           </form>

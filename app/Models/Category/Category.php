@@ -2,9 +2,10 @@
 
 namespace App\Models\Category;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Http\Controllers\Category\CategoryController;
+use App\Models\Book\Book;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\Category\CategoryController;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
@@ -13,4 +14,9 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $guarded = '';
+
+    public function book()
+    {
+        return $this->hasMany(Book::class);
+    }
 }

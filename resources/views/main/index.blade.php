@@ -2,36 +2,36 @@
 
 @section('container')
 
-<!-- account -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content p-3">
-      <form action="{{ route('login.store') }}" method="post" >
-        @csrf
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input style="border: none; border-bottom: 1px solid" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        <!-- account -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content p-3">
+              <form action="{{ route('login.store') }}" method="post" >
+                @csrf
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email</label>
+                  <input style="border: none; border-bottom: 1px solid" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input style="border: none; border-bottom: 1px solid" name="password" type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <div class="mb-3 text-center">
+                  <a href="#">Lupa Kata Sandi</a>
+                </div>
+                <button type="submit" class="btn btn-secondary w-100 text-center">Masuk</button>
+                <div class="mb-3 mt-3">
+                  <p class="text-center">Belum mendaftar? <a href="{{ url('buku/register') }}">Daftar</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input style="border: none; border-bottom: 1px solid" name="password" type="password" class="form-control" id="exampleInputPassword1" />
-        </div>
-        <div class="mb-3 text-center">
-          <a href="#">Lupa Kata Sandi</a>
-        </div>
-        <button type="submit" class="btn btn-secondary w-100 text-center">Masuk</button>
-        <div class="mb-3 mt-3">
-          <p class="text-center">Belum mendaftar? <a href="daftar.html">Daftar</a></p>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 <!-- tutup account -->
 
 <!-- carousel -->
-<div class="carousel d-flex">
+<div  class="carousel d-flex">
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -90,18 +90,29 @@
 <!-- rekomendasi -->
 <p class="text-recommend">Rekomendasi Kutu Buku Untukmu</p>
 <div class="recommended">
-<div class="row row-cols-1 row-cols-md-6 g-3">
-  <div class="col">
-    <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
-      <img src="{{ asset('custom/image/book1.jpg') }}" class="card-img-top" alt="..." style="height: 200px" />
-      <div class="card-body">
-        <p class="card-text" style="font-size: 12px">S.K. Ali</p>
-        <h5 class="card-title" style="font-size: 14px">Love from A to Z</h5>
-        <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 93.000</b></h5>
+  <div class="row row-cols-1 row-cols-md-6 g-3">
+    @foreach ($book as $data)   
+    <a href="/buku/products/{{ $data->slug }}" style="text-decoration: none">
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
+          <img src="{{ asset('coverimage') }}/{{ $data->cover }}" class="card-img-top" alt="..." style="height: 200px"/>
+          <div class="card-body">
+            <p class="card-text" style="font-size: 12px; color: #212529">{{ $data->author->name ?? '-' }}</p>
+            <h5 class="card-title" style="font-size: 14px; color: #212529">{{ $data->title }}</h5>
+            <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>@currency($data->price)</b></h5>
+          </div>
+        </div>
       </div>
-    </div>
+    </a>
+  @endforeach
   </div>
-  <div class="col">
+</div>
+
+
+
+
+
+  {{-- <div class="col">
     <div class="card shadow p-3 mb-5 bg-body rounded" style="height: 350px">
       <img src="{{ asset('custom/image/book2.jpg') }}" class="card-img-top" alt="..." style="height: 200px" />
       <div class="card-body">
@@ -152,11 +163,11 @@
     </div>
   </div>
 </div>
-</div>
+</div> --}}
 <!-- tutup dari rekomendasi -->
 
 <!-- buku terpopuler -->
-<h4 class="text-popular">Buku - Buku Terpopuler</h4>
+{{-- <h4 class="text-popular">Buku - Buku Terpopuler</h4>
 <div class="popular">
 <div class="row row-cols-1 row-cols-md-5 g-4" style="justify-content: space-between">
   <div class="banner1">
@@ -191,7 +202,7 @@
         <h5 class="card-title" style="font-size: 15px; color: #0060ae"><b>Rp 77.000</b></h5>
       </div>
     </div>
-  </div>
+  </div>  
   <div class="col">
     <div class="card shadow-sm p-3 mb-5 bg-body rounded" style="height: 350px">
       <img src="{{ asset('custom/image/book-popular4.jpg') }}" class="card-img-top" alt="..." style="height: 220px" />
@@ -203,10 +214,10 @@
     </div>
   </div>
 </div>
-</div>
+</div> --}}
 
 <!-- buku novel terpopuler -->
-<h4 class="text-popular-novel">Novel Paling Laris</h4>
+{{-- <h4 class="text-popular-novel">Novel Paling Laris</h4>
 <div class="popular-novel">
 <div class="row row-cols-1 row-cols-md-5 g-4" style="justify-content: space-between">
   <div class="banner1">
@@ -253,10 +264,14 @@
     </div>
   </div>
 </div>
-</div>
+</div> --}}
 <!-- Novel terpopuler -->
 
+@if (session('success'))
+    <script>
+      toastr.success("{!! session('success') !!}");
+    </script>
+@endif
     <!-- tutup Novel terpopuler -->
 @endsection
-
     

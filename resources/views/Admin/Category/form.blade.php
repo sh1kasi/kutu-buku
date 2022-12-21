@@ -9,6 +9,17 @@
     <div class="main-wrapper">
         <div class="row">
             <div class="col">
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <ul>
+                                <li>{{ $error }}</li>
+                            </ul>
+                        @endforeach
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah Kategori</h5>

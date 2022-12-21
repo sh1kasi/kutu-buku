@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Responsive Admin Dashboard Template">
         <meta name="keywords" content="admin,dashboard">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="author" content="stacks">
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         
@@ -43,7 +44,7 @@
                       <li class="nav-item">
                         <a class="nav-link" id="sidebar-toggle" href="#"><i data-feather="arrow-left"></i></a>
                       </li>
-                      <li class="nav-item">
+                      {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
                       </li>
                       <li class="nav-item">
@@ -51,15 +52,15 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Help</a>
-                      </li>
+                      </li> --}}
                     </ul>
                     </div>
                     <div class="logo">
-                      <a class="navbar-brand" href="/"></a>
+                      <a class="navbar-brand" href="/category"></a>
                     </div>
                     <div class="" id="headerNav">
                       <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                           <a class="nav-link search-dropdown" href="#" id="searchDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i data-feather="search"></i></a>
                           <div class="dropdown-menu dropdown-menu-end dropdown-lg search-drop-menu" aria-labelledby="searchDropDown">
                             <form>
@@ -71,8 +72,8 @@
                             <a class="dropdown-item" href="#">file manager</a>
                             <a class="dropdown-item" href="#">new users</a>
                           </div>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li> --}}
+                        {{-- <li class="nav-item dropdown">
                           <a class="nav-link notifications-dropdown" href="#" id="notificationsDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">3</a>
                           <div class="dropdown-menu dropdown-menu-end notif-drop-menu" aria-labelledby="notificationsDropDown">
                             <h6 class="dropdown-header">Notifications</h6>
@@ -142,7 +143,7 @@
                               </div>
                             </a>
                           </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdow mt-2">
                           <a class="nav-link profile-dropdown" href="#" id="profileDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             @auth
@@ -154,6 +155,7 @@
                             <a class="dropdown-item" href="#"><i data-feather="inbox"></i>Messages</a>
                             <a class="dropdown-item" href="#"><i data-feather="edit"></i>Activities<span class="badge rounded-pill bg-success">12</span></a> --}}
                             <a class="dropdown-item" href="#"><i data-feather="check-circle"></i>Tasks</a> 
+                            <a class="dropdown-item" href="/buku"><i data-feather="corner-down-left"></i>Back</a> 
                             <div class="dropdown-divider"></div>
                             {{-- <a class="dropdown-item" href="#"><i data-feather="settings"></i>Settings</a>
                             <a class="dropdown-item" href="#"><i data-feather="unlock"></i>Lock</a> --}}
@@ -179,23 +181,29 @@
                     Main
                   </li>
                   <li>
-                    <a href="category"><i data-feather="file"></i>Category</a>
+                    <a href="{{ route('category.index') }}"><i data-feather="file"></i>Category</a>
                   </li>
                   <li>
-                    <a href="publisher"><i data-feather="file"></i>Publisher</a>
+                    <a href="{{ route('publisher.index') }}"><i data-feather="file"></i>Publisher</a>
                   </li>
                   <li>
-                    <a href="author"><i data-feather="file"></i>Author</a>
+                    <a href="{{ route('author.index') }}"><i data-feather="file"></i>Author</a>
                   </li>
-                  <li>
+                  {{-- <li>
                     <a href="warehouse"><i data-feather="file"></i>Warehouse</a>
+                  </li> --}}
+                  <li>
+                    <a href="{{ route('book.index') }}"><i data-feather="file"></i>Book</a>
                   </li>
-                  <li class="sidebar-title">
+                  <li>
+                    <a href="{{ route('user.index') }}"><i data-feather="file"></i>User</a>
+                  </li>
+                  {{-- <li class="sidebar-title">
                     Apps
                   </li>
                   <li>
                     <a href="email.html"><i data-feather="inbox"></i>Email</a>
-                  </li>
+                  </li> --}}
                   {{-- <li>
                     <a href="calendar.html"><i data-feather="calendar"></i>Calendar</a>
                   </li>
@@ -204,13 +212,13 @@
                   </li><li>
                     <a href="file-manager.html"><i data-feather="message-circle"></i>File Manager</a>
                   </li> --}}
-                  <li class="sidebar-title">
+                  {{-- <li class="sidebar-title">
                     Elements
-                  </li>
+                  </li> --}}
                   {{-- <li>
                     <a href="index.html"><i data-feather="code"></i>Components<i class="fas fa-chevron-right dropdown-icon"></i></a>
                     <ul class="">
-                      <li><a href="alerts.html"><i class="far fa-circle"></i>Alerts</a></li>
+                      <li><a href="alerts.html"><i class="far fa-circle">o</i>Alerts</a></li>
                       <li><a href="typography.html"><i class="far fa-circle"></i>Typography</a></li>
                       <li><a href="icons.html"><i class="far fa-circle"></i>Icons</a></li>
                       <li><a href="badge.html"><i class="far fa-circle"></i>Badge</a></li>
@@ -234,7 +242,7 @@
                       <li><a href="tree-view.html"><i class="far fa-circle"></i>Tree View</a></li>
                     </ul>
                   </li> --}}
-                  <li>
+                  {{-- <li>
                     <a href="index.html"><i data-feather="edit"></i>Form<i class="fas fa-chevron-right dropdown-icon"></i></a>
                     <ul class="">
                       <li><a href="form-elements.html"><i class="far fa-circle"></i>Form Elements</a></li>
@@ -244,7 +252,7 @@
                   </li>
                   <li>
                     <a href="cards.html"><i data-feather="layers"></i>Cards</a>
-                  </li>
+                  </li> --}}
                   {{-- <li>
                     <a href="index.html"><i data-feather="list"></i>Tables<i class="fas fa-chevron-right dropdown-icon"></i></a>
                     <ul class="">
@@ -255,7 +263,7 @@
                   <li>
                     <a href="charts.html"><i data-feather="pie-chart"></i>Charts</a>
                   </li> --}}
-                  <li class="sidebar-title">
+                  {{-- <li class="sidebar-title">
                     Other
                   </li>
                   <li>
@@ -274,7 +282,7 @@
                   <li>
                     <a href="#"><i data-feather="check-circle"></i>Documentation</a>
                   </li>
-                </ul>
+                </ul> --}}
             </div>
             
               @yield('content')
@@ -291,6 +299,7 @@
         <script src="{{ asset('template/plugins/perfectscroll/perfect-scrollbar.min.js') }}"></script>
         <script src="{{ asset('template/plugins/apexcharts/apexcharts.min.js') }}"></script>
         <script src="{{ asset('template/js/main.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="{{ asset('template/js/pages/dashboard.js') }}"></script>
 
 

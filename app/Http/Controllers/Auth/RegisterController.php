@@ -2,72 +2,39 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Auth;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    // use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function store(Request $request)
     {
-        $this->middleware('guest');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
+        $this->validate($request, 
+        [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'email:dns', 'max:255', 'unique:users'],
+            'password' => ['required_with:password_confirmation', 'required', 'min:6'],
+            'password_confirmation' => ['same:password'],
+            'g-recaptcha-response' => 'required|captcha',
+        ],
+        [
+            'g-recaptcha-response' => [
+                'required' => 'Harap verifikasi bahwa ada bukan robot!',
+                'captcha' => 'Captcha error! coba ulangi dengan refresh halaman!',
+            ],
+            'password_confirmation.same' => 'Password Yang Anda Masukkan Berbeda'
         ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function store(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+         User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request['password']),
+            'is_admin' => '0',
         ]);
+
+        return redirect('/buku/login')->with('success', 'Registrasi berhasil, silahkan login dengan benar!');
     }
 }
+

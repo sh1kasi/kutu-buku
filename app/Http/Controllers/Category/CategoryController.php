@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers\Category;
 
+use App\Models\Book\Book;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Pivot\Bookcate;
 use App\Models\Category\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
     public function index()
     {
 
-        $category = Category::orderBy('name')->get();
+        $category = Category::get();
 
-        return view('Admin.Category.index', compact('category'));
+        $book = Book::get();
+        
+
+        return view('Admin.Category.index', compact('category', 'book'));
     }
 
     public function create()
@@ -25,6 +31,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
 
         $this->validate($request, [
             'name' => 'required'
@@ -35,14 +42,45 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect()->route('category.index')->with('message', 'Kategori berhasil ditambahkan!');
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil ditambahkan!');
     
+    }
+
+    public function modalStore(Request $request) {
+        // dd($request);    
+
+      $validator = Validator::make($request->all(), [
+            'name' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages(),
+            ]);
+        } else {
+            $category = new Category;
+            $category->name = $request->name;
+            $category->slug = Str::slug($request->name);
+            $category->save();
+            return response()->json([
+                'status'=>200,
+                'message'=>'Kategori Berhasil Ditambahkan',
+                'data'=>$category,
+            ]);
+        }
+
+
     }
 
     public function edit($id)
     {
         $category = Category::find($id);
         // dd($category);
+
+        // $pivot = Bookcate::where('category_id', $id)->get();
+
+        // dd($pivot->count());
 
         return view('Admin.Category.edit', compact('category'));
     }
@@ -61,7 +99,7 @@ class CategoryController extends Controller
 
        $category->update($data);
 
-        return redirect()->route('category.index')->with('message', 'Kategori berhasil diperbarui!');
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil diperbarui!');
     }
 
     public function destroy($id)
@@ -69,7 +107,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->delete();
 
-        return redirect()->route('category.index')->with('message', 'Kategori tersebut berhasil dihapus');
+        return redirect()->route('category.index');
     }
 
         

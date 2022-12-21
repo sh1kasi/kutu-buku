@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_book', function (Blueprint $table) {
+        Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->integer('shoppingid');
-            $table->string('bookisbn');
+            $table->string('user_id');
+            $table->string('label_address');
+            $table->string('receiver');
+            $table->string('phone');
+            $table->string('province_id');
+            $table->string('regency_id');
+            $table->string('district_id');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shopping_book');
+        Schema::dropIfExists('deliveries');
     }
 };
