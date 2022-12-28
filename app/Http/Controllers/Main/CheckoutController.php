@@ -37,8 +37,10 @@ class CheckoutController extends Controller
 
         $total_weight = 0;
         foreach ($cart as $data) {
-           $total_weight +=  $data->book_qty * $data->book->weight;
+                // dd($key);
+                $total_weight +=  $data->book_qty * $data->book->weight;
         }
+        // dd($total_weight);
 
         $harga = $request->input('harga');
         
@@ -183,7 +185,7 @@ class CheckoutController extends Controller
         // dd($cart);
         $total_weight = 0;
         foreach ($cart as $data) {
-           $total_weight +=  $data->book_qty * $data->book->weight;
+                $total_weight +=  $data->book_qty * $data->book->weight;
         }
 
         $cost = RajaOngkir::ongkosKirim([

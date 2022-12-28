@@ -272,6 +272,7 @@
       toastr.success("{!! session('success') !!}");
     </script>
 @endif
+
     <!-- tutup Novel terpopuler -->
 @endsection
     

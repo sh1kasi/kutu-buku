@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('author_id')->nullable()->constrained()->onDelete('set null')->onUpdate('cascade');
             $table->foreignId('publisher_id')->nullable()->constrained()->onDelete('set null')->onUpdate('cascade');
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null')->onUpdate('cascade');
+            $table->string('cart_id')->nullable();
             // $table->string('authorname'); // iki ga perlu
             // $table->string('authoradress');
             $table->integer('year');

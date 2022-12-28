@@ -60,7 +60,7 @@
             hidden
         @endif
 
-        class="btn-kategori" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Kategori <i class="bi bi-chevron-down"></i></button>
+        class="btn-kategori" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">Kategori <i class="bi bi-chevron-down"></i></button>
         <div class="collapse" id="collapseExample">
           <div class="container">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis eius, exercitationem cumque dignissimos explicabo iusto saepe provident iure quam porro placeat veniam deserunt nostrum ea expedita, corrupti, molestias
@@ -68,6 +68,50 @@
           </div>
         </div>
       </div>
+
+
+      <span class="category_menu row collapse" id="collapseExample3">
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak2" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px">Buku</span>
+          <div class="kotak col-md-6" id="kotak2" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+          </div>
+        </a>
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak3" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px"> </span>
+          <div class="kotak col-md-6" id="kotak3" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+          </div>
+        </a>
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak4" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px"> </span>
+          <div class="kotak col-md-6" id="kotak4" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+          </div>
+        </a>
+        <a href="#" class="d-flex" style="text-decoration: none">
+          <span class="btn" data-target="kotak5" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px; padding-bottom: 100px"> </span>
+          <div class="kotak col-md-6" id="kotak5" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+            <a href="#" class="text-decoration-none text-dark"><p> </p></a>
+          </div>
+        </a>
+      </span>
+
+
+
+
       <div class="autocomplete col-md-5" style="padding-top: 15px">
         <form method="get" action="buku-pilihan"
         @if (request()->is('buku/login'))
@@ -119,18 +163,33 @@
         hidden
     @endif
     class="keranjang bi bi-cart2"></i></a>
-    {{-- @if ($cart_count == 0)
+    @auth 
+    @php
+    $qty = 0;
+    @endphp
+    @if (auth()->user()->cart == null)
+
+    @endif
+    @foreach (auth()->user()->cart as $item)
+
+        @php
+            $qty += $item->book_qty;
+        @endphp
+
+        @if ($qty == 0)
+        
+        @elseif ($qty <= 9)
+          <span class="count-cart">{{ $qty }}</span>
+        @elseif ($qty >= 10)
+           <span class="rounded-pill count-cart2">{{ $qty }}</span>
+        @else 
+        @endif
     
-    @elseif ($cart_count <= 9)
-      <span class="count-cart">{{ $cart_count }}</span>
-    @elseif ($cart_count >= 10)
-       <span class="rounded-pill count-cart2">{{ $cart_count }}</span>
-    @else 
-    @endif --}}
-{{-- 
-    @if ($cart_count == 0)
-  
-    @endif --}}
+        {{-- @if ($qty += $item->book_qty == 0)
+      
+        @endif --}}
+    @endforeach
+    @endauth
       </div>
     </nav>
     <!-- tutup navbar -->
@@ -249,6 +308,15 @@
         window.open($url, '_blank');
         $('#wapesan').val('')
       })
+
+      $(document).ready(function () {
+        $('.btn').mouseenter(function () {
+          $('.kotak').css('display', 'none');
+          var target = $(this).data('target');
+          $(`#${target}`).css('display', 'block');
+        });
+      });
+
     </script>
     
     

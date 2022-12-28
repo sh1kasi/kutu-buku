@@ -2,6 +2,7 @@
 
 namespace App\Models\Order_detail;
 
+use App\Models\Book\Book;
 use App\Models\Cart\Cart;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,5 +17,10 @@ class Order_detail extends Model
     public function cart()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
     }
 }

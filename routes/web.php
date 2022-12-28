@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminOrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\Main\CartController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Author\AuthorController;
+use App\Http\Controllers\Coupon\CouponController;
 use App\Http\Controllers\Main\CheckoutController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Publisher\PublisherController;
@@ -49,6 +52,8 @@ Route::prefix('/buku')->name('view.')->group(function ()
     Route::post('/register/store', [RegisterController::class, 'store' ])->name('register.store');
     Route::get('/login/logout', [LoginController::class, 'logout' ])->name('logout');
     Route::post('/payment', [OrderController::class, 'payment_post'])->name('payment');
+    // Route::post('/payment-handler', [ApiController::class, 'payment_handler'])->name('payment_handler');
+    // Route::post('/midtrans-callback', [OrderController::class, 'callback'])->name('midtrans-callback');
 
 // });
 
@@ -60,17 +65,26 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart-update', [CartController::class, 'updateCart'])->name('cartUpdate');
     Route::post('/cart-checkout', [CartController::class, 'checkout_post'])->name('cartCheckout');
     Route::post('/cart-checkout-update', [CartController::class, 'checkout_post_update'])->name('cartCheckoutUpdate');
+    Route::post('/cart-midtranspay', [CartController::class, 'midtransPay'])->name('midtransPay');
     Route::get('buku/cart', [CartController::class, 'view'])->name('cartView'); 
 
     Route::post('/order-add', [OrderController::class, 'addOrder'])->name('addOrder');
     Route::post('/updateongkir', [OrderController::class, 'updateOngkir'])->name('updateOngkir');
+
+    Route::get('/buku/payment/{order_id}', [OrderController::class, 'pembayaran'])->name('paymentView');
 
     Route::get('/cekongkir', [CheckoutController::class, 'cekOngkir'])->name('cekongkir');
     Route::post('/cekongkir', [CheckoutController::class, 'cekOngkir'])->name('cekongkirpost');
 
     Route::get('buku/checkout', [CheckoutController::class, 'view'])->name('checkoutView');
 
+    Route::post('/coupon/check', [CouponController::class, 'check'])->name('coupon.check');
+    Route::post('/coupon-cancel', [CouponController::class, 'cancelCoupon'])->name('coupon.cancel');
+
+
+
     Route::get('buku/orders', [ViewController::class, 'riwayatPembelian'])->name('riwayatView');
+    Route::get('buku/detail-transaksi/{id}', [ViewController::class, 'detailTransaksi'])->name('detailView');
 
     // Route::post('buku/checkout/post', [CheckoutController::class, 'view'])->name('checkoutPost');
     Route::post('/checkout-update', [CheckoutController::class, 'updateCheckout'])->name('checkoutUpdate');
@@ -127,6 +141,17 @@ Route::middleware(['auth', 'is_admin:1'])->group(function () {
     Route::get('/book/edit/{id}', [BookController::class, 'edit'])->name('book.edit');
     Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
     Route::get('/book/delete/{id}', [BookController::class, 'destroy'])->name('book.destroy');
+
+    // Coupons
+    Route::get('/coupon', [CouponController::class, 'index'])->name ('coupon.index')->middleware('is_admin');
+    Route::get('/coupon/form', [CouponController::class, 'create'])->name('coupon.create');
+    Route::post('/coupon/store', [CouponController::class, 'store'])->name('coupon.store');
+    Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
+
+    // Order
+    Route::get('/order', [AdminOrderController::class, 'index'])->name('orderAdmin.index');
+    Route::get('/order/detail/{id}', [AdminOrderController::class, 'detail'])->name('orderAdmin.detail');
+
 
     // User
     Route::get('/user', [UserController::class, 'index'])->name('user.index');

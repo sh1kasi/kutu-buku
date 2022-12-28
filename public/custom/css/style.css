@@ -677,12 +677,11 @@ input::-webkit-inner-spin-button {
 }
 .status-pembayaran {
   margin-left: 10px;
-  background-color: yellow;
 
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
   height: 30px;
-  width: 155px;
+  width: 150px;
 }
 .text-pembelian {
   font-family: 'Nunito', sans-serif;
@@ -701,7 +700,7 @@ input::-webkit-inner-spin-button {
   font-weight: 600;
 }
 .status-pemesanan {
-  background-color: yellow;
+  /* background-color: yellow; */
   font-size: 13px;
 
   font-family: 'Nunito', sans-serif;

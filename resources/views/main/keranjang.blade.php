@@ -74,51 +74,57 @@
     <div class="card cart shadow-sm p-3 bg-body rounded">
         <div class="img-deskripsi">
             @php $total = 0; @endphp
-            @foreach ($cartitems as $item)
-            {{-- @dd($item->book_id) --}}
-            <div class="card-body">
-                <a style="font-family: 'Nunito', sans-serif; font-weight: 600; color: #5a5a5a">Pesanan
-                    {{ $loop->iteration }}</a>
-            </div>
-            <div class="img-pesanan book_data d-flex" style="padding-bottom: 10px; border-bottom: 1px solid #c1c1c1">
-                <img src="{{ asset('coverimage') }}/{{ $item->book->cover }}" alt=""
-                    style="width: 85px; height: 130px; padding-left: 20px; padding-bottom: 30px" />
-                <div class="text" style="max-width: 190px">
-                    <p class="title-pesanan ms-1">{{ $item->book->title }}</p>
-                    <b class="price ms-1">@currency($item->book->price)</b>
-                </div>
-                <input type="hidden" id="price" value="{{ $item->book->price }}">
-                <input type="hidden" value="{{ $item->book->id }}" class="book_id">
-                @php
-                    $book_id = $item->book->id;
-                    $cart_id = $item->id;
-                @endphp
-                <div class="minus" style="font-size: 20px; padding-left: 60px; padding-top: 20px">
-                    <button id="minus" class="decrement-btn change"
-                        style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i
-                            class="bi bi-dash-circle"></i></button>
-                </div>
-                <div class="input" style="padding-top: 20px">
-                    <input id="input" class="input-qty" type="number" value="{{ $item->book_qty }}"
-                        style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
-                </div>
-                <div class="plus" style="font-size: 20px; padding-top: 20px">
-                    <button id="plus" class="increment-btn change"
-                        style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i
-                            class="bi bi-plus-circle"></i></button>
-                </div>
-                <div class="price-total" style="padding-top: 13px; padding-left: 90px">
-                    <p style="font-size: 14px; color: #0060ae"><b id="total1">Rp
-                            {{ $item->book->price * $item->book_qty }}</b>
-                    </p>
-                    <button class="btn delete-item" style="font-size: 14px"><i
-                            class="bi bi-trash3 ms-1"></i>Hapus</button>
-                </div>
-            </div>
             @php
-             $total += $item->book->price * $item->book_qty 
-            
+            $total_qty = 0;
             @endphp
+            @foreach ($cartitems as $data)
+                {{-- @foreach ($item->book as $data) --}}
+                {{-- @dd($item->book_id) --}}
+                <div class="card-body">
+                    <a style="font-family: 'Nunito', sans-serif; font-weight: 600; color: #5a5a5a">Pesanan
+                        {{ $loop->iteration }}</a>
+                </div>
+                <div class="img-pesanan book_data d-flex" style="padding-bottom: 10px; border-bottom: 1px solid #c1c1c1">
+                    <img src="{{ asset('coverimage') }}/{{ $data->book->cover }}" alt=""
+                        style="width: 85px; height: 130px; padding-left: 20px; padding-bottom: 30px" />
+                    <div class="text" style="max-width: 190px">
+                        <p class="title-pesanan ms-1">{{ $data->book->title }}</p>
+                        <b class="price ms-1">@currency($data->book->price)</b>
+                    </div>
+                    <input type="hidden" id="price" value="{{ $data->book->price }}">
+                    <input type="hidden" value="{{ $data->book->id }}" class="book_id">
+                    @php
+                    $book_id = $data->book->id;
+                    $cart_id = $data->id;
+                    @endphp
+                    <div class="minus" style="font-size: 20px; padding-left: 60px; padding-top: 20px">
+                        <button id="minus" class="decrement-btn change"
+                            style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i
+                                class="bi bi-dash-circle"></i></button>
+                    </div>
+                    <div class="input" style="padding-top: 20px">
+                        <input id="input" class="input-qty" type="number" value="{{ $data->book_qty }}"
+                            style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
+                    </div>
+                    <div class="plus" style="font-size: 20px; padding-top: 20px">
+                        <button id="plus" class="increment-btn change"
+                            style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i
+                                class="bi bi-plus-circle"></i></button>
+                    </div>
+                    <div class="price-total" style="padding-top: 13px; padding-left: 90px">
+                        <p style="font-size: 14px; color: #0060ae"><b id="total1">Rp
+                                {{ $data->book->price * $data->book_qty }}</b>
+                        </p>
+                        <button class="btn delete-item" type="button" onclick="delete_cart({{ $data->book->id }})" style="font-size: 14px"><i
+                                class="bi bi-trash3 ms-1"></i>Hapus</button>
+                    </div>
+                </div>
+                @php
+                 $total += $data->book->price * $data->book_qty;
+                 $total_qty += $data->book_qty;
+                @endphp
+                {{-- @endforeach --}}
+
             @endforeach
         </div>
 
@@ -158,7 +164,8 @@
 
     <div class="total-pesanan d-flex"
         style="padding-top: 10px; border-top: 1px solid #6e6e6e; justify-content: space-between">
-        <p>Total Pesanan <b>1</b></p>
+        
+        <p>Total Pesanan <b>{{ $total_qty }}</b></p>
         <p><b id="total2">Rp {{ $total }}</b></p>
     </div>
 </div>
@@ -176,8 +183,7 @@
                 <input type="hidden" name="cart_id" value="{{ $cart_id }}">
                 <input type="hidden" name="book_id" id="book_id" value="{{ $book_id }}">
                 <input type="hidden" name="subtotal" value="{{ $total }}">
-                <button class="rounded-pill btn btn-primary w-100"
-                        type="submit">Lanjut ke Halaman Checkout</button>
+                <button class="rounded-pill btn btn-primary w-100" type="submit">Lanjut ke Halaman Checkout</button>
             </form>
         </div>
     </div>
@@ -192,7 +198,7 @@
 
         // $(".beberapa").click(function (e) { 
         //     e.preventDefault();
-            
+
         //     var book_id = $(this).parents('.detail-pesanan').find('#book_id').val();
         //     console.log(book_id);
 
@@ -223,30 +229,32 @@
             }
         });
 
-        $(".delete-item").click(function (e) {
-            e.preventDefault();
+        // $(".delete-item").click(function (e) {
+        //     e.preventDefault();
 
-            var book_id = $('.book_id').val();
+        //     var book_id = $('.book_id').val();
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
 
-            $.ajax({
-                method: "POST",
-                url: "/delete-item",
-                data: {
-                    'book_id': book_id,
-                },
-                success: function (response) {
-                    window.location.reload()
-                    swal("", response.status, 'success');
-                }
-            });
+        //     $.ajax({
+        //         method: "POST",
+        //         url: "/delete-item",
+        //         data: {
+        //             'book_id': book_id,
+        //         },
+        //         success: function (response) {
+        //             window.location.reload()
+        //             swal("", response.status, 'success');
+        //         }
+        //     });
 
-        });
+        // });
+
+        
 
         $(".change").click(function (e) {
             e.preventDefault();
@@ -285,6 +293,30 @@
         });
 
     });
+
+    function delete_cart(id) {
+            
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "/delete-item",
+                data: {
+                    'book_id': id,
+                },
+                success: function (response) {
+                    window.location.reload()
+                    swal("", response.status, 'success');
+                }
+            });
+
+    }
 
 </script>
 

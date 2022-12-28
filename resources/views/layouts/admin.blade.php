@@ -20,11 +20,16 @@
         <link href="{{ asset('template/plugins/perfectscroll/perfect-scrollbar.css') }}" rel="stylesheet">
         <link href="{{ asset('template/plugins/apexcharts/apexcharts.css') }}" rel="stylesheet">
 
+        {{-- Bootstrap Icons --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+
         {{-- Data Tables --}}
 
         <!-- Theme Styles -->
         <link href="{{ asset('template/css/main.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('template/css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('custom/css/style.css') }}" rel="stylesheet">
         {{-- <link href="{{ asset('template/css/dark-theme.css') }}" rel="stylesheet"> --}}
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -181,10 +186,10 @@
                     Main
                   </li>
                   <li>
-                    <a href="{{ route('category.index') }}"><i data-feather="file"></i>Category</a>
+                    <a href="{{ route('category.index') }}"><i data-feather="list"></i>Category</a>
                   </li>
                   <li>
-                    <a href="{{ route('publisher.index') }}"><i data-feather="file"></i>Publisher</a>
+                    <a href="{{ route('publisher.index') }}"><i data-feather="home"></i>Publisher</a>
                   </li>
                   <li>
                     <a href="{{ route('author.index') }}"><i data-feather="file"></i>Author</a>
@@ -193,10 +198,16 @@
                     <a href="warehouse"><i data-feather="file"></i>Warehouse</a>
                   </li> --}}
                   <li>
-                    <a href="{{ route('book.index') }}"><i data-feather="file"></i>Book</a>
+                    <a href="{{ route('book.index') }}"><i data-feather="book"></i>Book</a>
                   </li>
                   <li>
-                    <a href="{{ route('user.index') }}"><i data-feather="file"></i>User</a>
+                    <a href="{{ route('user.index') }}"><i data-feather="users"></i>User</a>
+                  </li>
+                  <li>
+                    <a href="{{ route('coupon.index') }}"><i data-feather="percent"></i>Voucher</a>
+                  </li>
+                  <li>
+                    <a href="{{ route('orderAdmin.index') }}"><i data-feather="shopping-cart"></i>Transactions &nbsp; <span class="badge bg-danger">3</span></a>
                   </li>
                   {{-- <li class="sidebar-title">
                     Apps

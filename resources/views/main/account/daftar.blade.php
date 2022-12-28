@@ -63,7 +63,7 @@
       <div class="mb-3 container" style="width: 45%">
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <i class="bi bi-eye toggle-password" id="eye_icon" type="button" style="position: absolute; top: 345px; left: 950px; font-size: 20px" onclick="myFunction()"></i>
-        <input style="border: none; border-bottom: 1px solid" type="password" class="form-control" id="myInputPw2" />
+        <input style="border: none; border-bottom: 1px solid" name="password" type="password" class="form-control" id="myInputPw2" />
         @error('password')
        <div class="text-danger mt-2">
          {{ $message }}
@@ -73,7 +73,7 @@
       <div class="mb-3 container" style="width: 45%">
         <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
         <i class="bi bi-eye" id="eyeye" type="button" style="position: absolute; top: 425px; left: 950px; font-size: 20px" onclick="myFunction2()"></i>
-        <input style="border: none; border-bottom: 1px solid" type="password" class="form-control" id="myInputPw3" />
+        <input style="border: none; border-bottom: 1px solid" name="password_confirmation" type="password" class="form-control" id="myInputPw3" />
         @error('password_confirmation')
        <div class="text-danger mt-2">
          {{ $message }}

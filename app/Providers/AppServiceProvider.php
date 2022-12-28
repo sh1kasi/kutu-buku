@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $qty = 0;
         // $cart = Cart::where('user_id', Auth::id())->get();
+        // $qty = 0;
         // foreach ($cart as $key) {
         //     // $qty = 0;
         //     $qty += $key->book_qty;

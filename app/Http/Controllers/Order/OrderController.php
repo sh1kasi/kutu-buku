@@ -7,6 +7,7 @@ use Midtrans\Config;
 use App\Models\Cart\Cart;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
+use App\Models\Coupon\Coupon;
 use App\Models\Courier\Courier;
 use App\Models\Delivery\Delivery;
 use App\Http\Controllers\Controller;
@@ -52,18 +53,28 @@ class OrderController extends Controller
 
     public function payment_post(Request $request)
     {
-        // return $request;
+        // return $request
 
         $json = json_decode($request->get('json'));
-        $order_detail = Order_detail::where('user_id', Auth::id())->first();
+        $order_detail = Order_detail::where('user_id', Auth::id())->where('status', 'Pending')->first();
+        $id_order = $request->input('id_order');
+        // dd($id_order);
         $delivery = Delivery::where('user_id', Auth::id())->first();
         $total_price = $request->input('total_price');
         $harga_ongkir = $request->input('harga_ongkir');
         $nama_ongkir = $request->input('nama_ongkir');
+        $snaptoken = $request->input('snaptoken');
+        $code = $request->input('coupon');
 
+        $coupon = Coupon::where('code', $code)->first();
+        
+        // $order = Order::where('user_id', Auth::id())->where()
 
         $order = new Order;
         $order->order_detail_id =  $order_detail->id;
+        $order->user_id =  Auth::id();
+        $order->coupon_id = $coupon->id;
+        $order->snaptoken =  $snaptoken;
         $order->delivery_id = $delivery->id;
         $order->status = $json->transaction_status;
         $order->transaction_id = isset($json->transaction_id) ?  $json->transaction_id : null;
@@ -83,6 +94,7 @@ class OrderController extends Controller
     
 
         $order_detail->order_id = $order->id;
+        $order_detail->status = "Paid";
         $order_detail->save();
         // dd($order_detail);
 
@@ -92,10 +104,8 @@ class OrderController extends Controller
             $value->delete();
         }
 
-        
-
-        
-
+        return redirect()->route('view.index');
 
     }
+
 }

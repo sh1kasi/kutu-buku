@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders_details', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');            
-            $table->string('order_id')->nullable();            
-            $table->string('book_id');            
-            $table->string('qty');            
-            $table->string('subtotal');
-            $table->enum('status', ['Paid', 'Pending']);
+            $table->string('code')->unique();
+            $table->string('type');
+            $table->integer('value')->nullable();
+            $table->integer('percent_off')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_details');
+        Schema::dropIfExists('coupons');
     }
 };

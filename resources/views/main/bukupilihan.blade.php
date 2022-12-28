@@ -100,11 +100,11 @@
     </div>
     <div class="product">
         <div class="form-out text-end" style="padding-bottom: 25px">
-            <select class="form select2 p-2" aria-label="Default select example">
-                <option class="text-dark py-2" selected>Terbaru</option>
-                <option class="text-dark py-2" value="1">Terpopuler</option>
-                <option class="text-dark py-2" value="2">Harga Terendah</option>
-                <option class="text-dark py-2" value="3">Harga Tertinggi</option>
+            <select class="form select2 p-2" name="selopt" aria-label="Default select example" onchange="window.location.href=this.value">
+                <option class="text-dark py-2" value="">Pilih Filter</option>
+                <option class="text-dark py-2" value="?date=newest">Terbaru</option>
+                <option class="text-dark py-2" value="?price=lowest">Harga Terendah</option>
+                <option class="text-dark py-2" value="?prices=highest">Harga Tertinggi</option>
             </select>
         </div>
         <div class="ps-5 pb-5" style="padding-right: 650px">

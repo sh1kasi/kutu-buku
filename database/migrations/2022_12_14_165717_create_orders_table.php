@@ -17,12 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('order_detail_id');
             $table->string('delivery_id');
+            $table->string('user_id');
+            $table->string('coupon_id')->nullable();
+            $table->string('snaptoken');
             $table->string('status');
             $table->string('transaction_id')->nullable();
             $table->string('order_id');
             $table->string('expedition')->nullable();
             $table->string('ongkir_price')->nullable();
-            $table->string('total_price')->nullable();
+            $table->string('total_price')->nullable(); 
             $table->string('gross_amount');
             $table->string('payment_type');
             $table->string('payment_code')->nullable();

@@ -23,6 +23,8 @@
   </div>
 </div>
 
+<input type="hidden" name="ongkir_price" id="ongkir_price">
+
 
 <form action="{{ route('payment') }}" id="submit_form" method="post">
   @csrf
@@ -30,6 +32,8 @@
   <input type="hidden" name="total_price" id="payment_total_price">
   <input type="hidden" name="harga_ongkir" id="payment_harga_ongkir">
   <input type="hidden" name="nama_ongkir" id="payment_nama_ongkir">
+  <input type="hidden" name="snaptoken" id="snaptoken">
+  <input type="hidden" name="coupon" id="coupon">
 </form>
 
 
@@ -70,9 +74,9 @@
         $("#"+cardId).html("");
         $.each(response.data.costs, function(key, item) {
           $.each(item.cost, function (key, data) {   
-            console.log(item);
+            // console.log(item);
 
-            $("#"+cardId).append(`<div class="accordion-body service" style="border-bottom: 1px solid #e2e2e2;"><a class="text-dark" id="layanan" data-layanan="${item.description}" data-harga="${data.value}" style="text-decoration: none">${item.description} (Rp ${data.value})</a><br />
+            $("#"+cardId).append(`<div class="accordion-body service" style="border-bottom: 1px solid #e2e2e2;"><a class="text-dark" id="layanan" data-layanan="${item.description}" data-harga="${data.value}" style="text-decoration: none">${item.description} (Rp ${data.value.toLocaleString("id-ID")})</a><br />
             <a class="text-secondary" id="layanan" data-layanan="${item.description}" data-harga="${data.value}" style="font-size: 14px; text-decoration: none">Dikirim dihari yang sama sebelum pukul 14:00</a></div>`);
             });
           });
@@ -85,14 +89,14 @@
             var total = $("#harga-total").val();
             var total_semua = Number(harga) + Number(total);
 
-            console.log(total_semua);
 
             // $(".isi-pengiriman").html(`<b>${name}</b> - (${hasil}) Rp ${harga}`);
             $("#staticBackdrop").modal("hide");
-            $("#pengiriman").html(`Rp ${harga}`);
-            $("#total").html(`Rp ${total_semua}`);
+            $("#pengiriman").html(`Rp ${parseInt(harga).toLocaleString("id-ID")}`);
+            $("#total").html(`Rp ${total_semua.toLocaleString("id-ID")}`);
             $("#total").append(`<input type="hidden" value="${total_semua}" name="harga_total" id="harga_total">`);
             $("#total").append(`<input type="hidden" value="${harga}" name="harga_ongkir" id="harga_ongkir">`);
+            $("#ongkir_price").val(harga);
             $("#total").append(`<input type="hidden" value="${hasil}" name="nama_ongkir" id="nama_ongkir">`);
 
             console.log(hasil);
@@ -108,14 +112,15 @@
             var total_price = $("#harga_total").val();
             var harga_ongkir = $("#harga_ongkir").val();
             var nama_ongkir = $("#nama_ongkir").val();
+            var inputCode = $(".code").val();
 
-            // console.log(harga_ongkir);
+            console.log(total_price);
 
-            $.ajaxSetup({
-              headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               }
-            });
+              $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
 
             $.ajax({
               type: "post",
@@ -123,55 +128,75 @@
               data: { 
                 total_price: total_price,
                 harga_ongkir: harga_ongkir,
-                nama_ongkir: name
+                nama_ongkir: name,
+                inputCode: inputCode
               },
               dataType: "json",
               success: function (response) {
                 console.log('sabi');
                 $(".opsi").remove();
-                $(".ubah").html(`Ubah Metode`);               
+                $('.code').prop("disabled", false);
+                $(".use_code").removeClass("disabled");
+                $(".payment").removeClass("disabled");
+                $(".ubah").html(`Ubah Metode`);
                 $(".nama_ongkir").html(`<b>${name}</b> - (${nama_ongkir})`);
-                $(".harga_ongkir").html(`Rp ${harga_ongkir}`);
-                $("#payment_total_price").val(total_price);
-                $("#payment_harga_ongkir").val(harga_ongkir);
-                $("#payment_nama_ongkir").val(nama_ongkir);
-                console.log(response.snaptoken);
+                $(".harga_ongkir").html(`Rp ${harga_ongkir.toLocaleString("id-ID")}`);
+                $("#payment_total_price").val(total_price.toLocaleString("id-ID"));
+                $("#payment_harga_ongkir").val(harga_ongkir.toLocaleString("id-ID"));
+                $("#payment_nama_ongkir").val(`(${name}) ${nama_ongkir}`);
+                $("#snaptoken").val(response.snaptoken);
 
                 $(".payment").click(function (e) { 
                   e.preventDefault();
 
-  
+                  var coupon = $(".code").val();
 
-                     // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-                      window.snap.pay(`${response.snaptoken}`, {
-                        onSuccess: function(result){
-                          /* You may add your own implementation here */
-                          console.log(result);
-                          send_response_to_for(result)
-                        },
-                        onPending: function(result){
-                          /* You may add your own implementation here */
-                          console.log(result);
-                          send_response_to_for(result)
-                        },
-                        onError: function(result){
-                          /* You may add your own implementation here */
-                          console.log(result);
-                          send_response_to_for(result)
-                        },
-                        onClose: function(){
-                          /* You may add your own implementation here */
-                          alert('you closed the popup without finishing the payment');
-                        }
-                      })
-                  
-                      function send_response_to_for(result) {
-                        // var total_price = $("#harga_total").val();
-                        // var harga_ongkir = $("#harga_ongkir").val();
-                        // var nama_ongkir = $("#nama_ongkir").val();
-                        document.getElementById('json_callback').value = JSON.stringify(result);
-                        $("#submit_form").submit();
-                      }
+                  $.ajax({
+                    type: "post",
+                    url: "/cart-midtranspay",
+                    data: {
+
+                    },
+                    dataType: "json",
+                    success: function (response) {
+
+                      $("#snaptoken").val(response.snaptoken);
+                      $("#coupon").val(coupon);
+                      
+                      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+                       window.snap.pay(`${response.snaptoken}`, {
+                         onSuccess: function(result){
+                           /* You may add your own implementation here */
+                           console.log(result);
+                           send_response_to_for(result)
+                         },
+                         onPending: function(result){
+                           /* You may add your own implementation here */
+                           console.log(result);
+                           send_response_to_for(result)
+                         },
+                         onError: function(result){
+                           /* You may add your own implementation here */
+                           console.log(result);
+                           send_response_to_for(result)
+                         },
+                         onClose: function(){
+                           /* You may add your own implementation here */
+                           alert('you closed the popup without finishing the payment');
+                         }
+                       })
+                   
+                       function send_response_to_for(result) {
+                         // var total_price = $("#harga_total").val();
+                         // var harga_ongkir = $("#harga_ongkir").val();
+                         // var nama_ongkir = $("#nama_ongkir").val();
+                         document.getElementById('json_callback').value = JSON.stringify(result);
+                         $("#submit_form").submit();
+                       }
+
+                    }
+                  });
+
 
                 });
 
@@ -185,6 +210,85 @@
       }
      });
     
+    });
+
+    
+    $(".use_code").click(function (e) { 
+        e.preventDefault();
+
+        var code = $(".code").val();
+        var harga_total = $("#harga_total").val();
+
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "/coupon/check",
+            data: {
+                harga_total: harga_total,
+                code: code,
+            },
+            dataType: "json",
+            success: function (response) {
+            var total_price = $("#harga_total").val();
+
+                if (response.status == 0) {
+                    toastr.error(`${response.message}`);
+                    $(".use_code").removeClass('disabled');
+                    $('#diskon').html(`-`);
+                } else if (response.status == 1) {
+                    toastr.success(`${response.message}`);
+                    $('#diskon').html(`(${response.code}) ${response.off}%`);
+                    // var disc = (response.off / 100) * response.harga_total;
+                    // var after_disc = response.harga_total - disc;
+                    console.log(response.harga_total);
+                    $('#total').html(`Rp ${response.harga_total.toLocaleString("id-ID")}`);
+                    $(".use_code").addClass("disabled");
+                } else if (response.status == 2) {
+                    toastr.success(`${response.message}`);
+                    $('#diskon').html(`(${response.code}) -Rp ${response.off.toLocaleString("id-ID")}`);
+                    // var after_disc = response.harga_total - response.off;
+                    console.log(response.harga_total);
+                    $('#total').html(`Rp ${response.harga_total.toLocaleString("id-ID")}`);
+                    $(".use_code").addClass("disabled");
+                }
+
+            } 
+        });
+        
+    });
+
+    $('input[type=search]').on('search', function () {
+
+        $(".use_code").removeClass("disabled");
+        var product_price = $("#harga-total").val();  
+        var shipment_price = $("#ongkir_price").val();
+        var before_disc = Number(product_price) + Number(shipment_price);
+
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+        });
+        
+      $.ajax({
+        type: "post",
+        url: "/coupon-cancel",
+        data: {
+          before_disc: before_disc
+        },
+        dataType: "json",
+        success: function (response) {
+          $("#diskon").html(` - `);
+          $("#total").html(`Rp ${before_disc.toLocaleString("id-ID")}`);
+        }
+      });
+
+       
     });
 
     
