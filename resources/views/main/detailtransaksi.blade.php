@@ -1,5 +1,8 @@
 @extends('layouts.main')
 
+@section('title')
+    {{ 'Detail Transaksi' }}
+@endsection
 
 @section('container')
 
@@ -97,11 +100,15 @@
                 <div class="harga">
                   <p class="m-0">@currency($order->total_price - $order->ongkir_price)</p>
                   <p class="m-0 mt-2">@currency($order->ongkir_price)</p>
-                  @if ($order->coupon->value != null)
-                  <p class="ms-0 mt-2 text-danger" style="font-weight: 600">({{ $order->coupon->code }}) -@currency($order->coupon->value)</p>
-                  @else
-                  <p class="ms-0 mt-2 text-danger" style="font-weight: 600">({{ $order->coupon->code }}) -{{ $order->coupon->percent_off }}%</p>
+
+                  @if ($order->coupon != null) 
+                    @if ($order->coupon->value != null)
+                    <p class="ms-0 mt-2 text-danger" style="font-weight: 600">({{ $order->coupon->code }}) -@currency($order->coupon->value)</p>
+                    @else
+                    <p class="ms-0 mt-2 text-danger" style="font-weight: 600">({{ $order->coupon->code }}) -{{ $order->coupon->percent_off }}%</p>
+                    @endif
                   @endif
+
                 </div>
                 {{-- @endforeach --}}
               </div>
@@ -110,13 +117,15 @@
                   <p class="m-0">Total Biaya Belanja</p>
                 </div>
                 <div class="biaya">
-                  @if ($order->coupon->value != null)
-                   <p class="m-0">@currency($order->total_price - $order->coupon->value)</p>
-                  @elseif ($order->coupon->percent_off != null)
-                   @php
-                       $price_disc = ($order->coupon->percent_off / 100) * $order->total_price;
-                   @endphp   
-                   <p class="m-0">@currency($order->total_price - $price_disc)</p>   
+                  @if ($order->coupon != null)
+                    @if ($order->coupon->value != null)
+                    <p class="m-0">@currency($order->total_price - $order->coupon->value)</p>
+                    @elseif ($order->coupon->percent_off != null)
+                    @php
+                        $price_disc = ($order->coupon->percent_off / 100) * $order->total_price;
+                    @endphp   
+                    <p class="m-0">@currency($order->total_price - $price_disc)</p>   
+                    @endif
                   @endif
                 </div>
               </div>
@@ -224,7 +233,7 @@
       e.preventDefault();
       // window.location.href = '/buku/checkout';
         // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        window.snap.pay("{{ $snapToken }}", {
+        window.snap.pay("{{ $order->snaptoken }}", {
         onSuccess: function(result){
           /* You may add your own implementation here */
           console.log(result);

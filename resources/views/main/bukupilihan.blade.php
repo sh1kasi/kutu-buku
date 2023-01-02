@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    {{ 'Buku Pilihan' }}
+@endsection
+
 @section('container')
 
 {{-- @if (!empty($min_harga && $max_harga))

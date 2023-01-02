@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    {{ $b->title }}
+@endsection
+
 @section('container')
     
   <link rel="stylesheet" href="{{ asset('custom') }}/css/style.css">

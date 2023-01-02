@@ -29,7 +29,7 @@
 
         <!-- Theme Styles -->
         <link href="{{ asset('template/css/main.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('custom/css/style.css') }}" rel="stylesheet">
+        {{-- <link href="{{ asset('custom/css/style.css') }}" rel="stylesheet"> --}}
         {{-- <link href="{{ asset('template/css/dark-theme.css') }}" rel="stylesheet"> --}}
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -207,7 +207,7 @@
                     <a href="{{ route('coupon.index') }}"><i data-feather="percent"></i>Voucher</a>
                   </li>
                   <li>
-                    <a href="{{ route('orderAdmin.index') }}"><i data-feather="shopping-cart"></i>Transactions &nbsp; <span class="badge bg-danger">3</span></a>
+                    <a href="{{ route('orderAdmin.index') }}"><i data-feather="shopping-cart"></i>Transactions &nbsp; <span class="badge bg-danger" id="order_count"></span></a>
                   </li>
                   {{-- <li class="sidebar-title">
                     Apps
@@ -313,15 +313,29 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="{{ asset('template/js/pages/dashboard.js') }}"></script>
 
+  <script>
+
+        $.ajaxSetup({ 
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+          type: "post",
+          url: "/order-count",
+          dataType: "json",
+          success: function (response) {
+            
+            if (response.count > 0) {    
+              $("#order_count").append(response.count);
+            }
+
+          }
+        });
 
 
-        {{-- Custom Script --}}
-        {{-- <script>
-         $(document).ready( function () {
-            $('#Tables123').DataTable();
-         } );
-        </script> --}}
-
+  </script>
 
     </body>
 </html>

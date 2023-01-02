@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    {{ 'Halaman Utama' }}
+@endsection
+
 @section('container')
 
         <!-- account -->

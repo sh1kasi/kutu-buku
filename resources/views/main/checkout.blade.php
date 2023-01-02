@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    {{ 'Checkout' }}
+@endsection
+
 @section('container')
 
 {{-- Midtrans --}}

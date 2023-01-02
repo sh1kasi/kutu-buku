@@ -20,4 +20,14 @@ class AdminOrderController extends Controller
         
         return view('Admin.order.detail');
     }
+
+    public function orderCount(Request $request)
+    {
+        $order = Order::count();
+        
+        return response()->json([
+            'count' => $order,
+        ]);
+    }
+
 }

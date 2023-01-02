@@ -36,8 +36,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <title>Halaman Utama | Kutu Buku</title>
+    <title>@yield('title') | Kutu Buku</title>
   </head>
+
   <body>
     <a href="#wabox" id="waBox"><img class="wa-icon fixed-bottom" src="{{ asset('custom/image/icon-wa-removebg-preview (1).png') }}" alt="" /></a>
     <!-- navbar -->
@@ -126,7 +127,11 @@
           <a class="dropdown" id="dropdownMenuButton1" data-bs-toggle="dropdown"> <i class="akun bi bi-person-circle"></i> </a>
           <ul class="dropdown-menu dropdown-menu-end" id="dropdown" aria-labelledby="dropdownMenuButton1" style="border-radius: 10px">
             <li class="dropdown-item disabled text-dark"><strong style="font-size: 22px">Hi, {{ auth()->user()->name }}</strong></li>
-            <li><a class="dropdown-item" href="{{ route('riwayatView') }}">Riwayat Pembelian</a></li>
+
+            @if (auth()->user()->order->count() > 0)
+             <li><a class="dropdown-item" href="{{ route('riwayatView') }}">Riwayat Pembelian</a></li>
+            @endif
+
             <div class="dropdown-divider"></div>
 
             @if (auth()->user()->is_admin == 1)

@@ -242,4 +242,11 @@ class CartController extends Controller
         ]);
 
     }
+
+    public function massDelete(Request $request)
+    {
+        $id = $request->input('selectedId');
+        Cart::where('user_id', Auth::id())->whereIn('book_id', $id)->delete();
+        // $cart->delete();
+    }
 }

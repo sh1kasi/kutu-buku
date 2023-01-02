@@ -42,9 +42,13 @@
                       <td>@currency($data->total_price)</td>
                       <td>
                         @if ($data->status == 'delivered')
-                            <p class="alert alert-success">Delivered</p>
+                            <p class="alert alert-success">Pesanan Selesai</p>
                         @elseif ($data->status == 'capture')
-                            <p class="alert alert-success">Order Success</p>
+                            <p class="alert alert-success">Pembayaran Selesai</p>
+                        @elseif ($data->status == 'settlement')
+                            <p class="alert alert-success">Pembayaran Selesai</p>
+                        @elseif ($data->status == 'pending')
+                            <p class="alert alert-warning">Pembayaran Tertunda</p>
                         @endif
                       </td>
                       {{-- <td><i data-feather="list"></i></td> --}}
@@ -54,8 +58,14 @@
                               Dropdown button
                             </i>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="/order/detail/{{ $data->id }}">Detail Order</a>
-                              <a class="dropdown-item alert alert-success" href="#">Selesaikan Pesanan</a>
+                              <a class="dropdown-item" href="/order/detail/{{ $data->order_id }}">Detail Order</a>
+                                @if ($data->status == 'capture')
+                                  <a class="dropdown-item alert alert-success" href="#">Selesaikan Pesanan</a>
+                                @elseif ($data->status == 'settlement')
+                                  <a class="dropdown-item alert alert-success" href="#">Selesaikan Pesanan</a>
+                                @endif
+                                <a class="dropdown-item alert alert-danger" href="#">Hapus Transaksi</a>
+                              
                               {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                             </div>
                         </div>

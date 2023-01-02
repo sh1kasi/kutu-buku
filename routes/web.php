@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\Admin\AdminOrderController;
@@ -67,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart-checkout-update', [CartController::class, 'checkout_post_update'])->name('cartCheckoutUpdate');
     Route::post('/cart-midtranspay', [CartController::class, 'midtransPay'])->name('midtransPay');
     Route::get('buku/cart', [CartController::class, 'view'])->name('cartView'); 
+    Route::delete('/cart/massdelete', [CartController::class, 'massDelete'])->name('carMassDelete'); 
 
     Route::post('/order-add', [OrderController::class, 'addOrder'])->name('addOrder');
     Route::post('/updateongkir', [OrderController::class, 'updateOngkir'])->name('updateOngkir');
@@ -150,7 +152,8 @@ Route::middleware(['auth', 'is_admin:1'])->group(function () {
 
     // Order
     Route::get('/order', [AdminOrderController::class, 'index'])->name('orderAdmin.index');
-    Route::get('/order/detail/{id}', [AdminOrderController::class, 'detail'])->name('orderAdmin.detail');
+    Route::post('/order-count', [AdminOrderController::class, 'orderCount'])->name('orderAdmin.count');
+    Route::get('/order/detail/{order_id}', [AdminOrderController::class, 'detail'])->name('orderAdmin.detail');
 
 
     // User

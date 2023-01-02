@@ -73,7 +73,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->order_detail_id =  $order_detail->id;
         $order->user_id =  Auth::id();
-        $order->coupon_id = $coupon->id;
+        $order->coupon_id = isset($coupon->id) ? $coupon->id : null;
         $order->snaptoken =  $snaptoken;
         $order->delivery_id = $delivery->id;
         $order->status = $json->transaction_status;
