@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Cart\Cart;
 use Illuminate\Support\Str;
+use App\Models\Category\Category;
 use Illuminate\Support\Facades\Auth;
 use App\TraitsFolder\BladeDirectives;
 use Illuminate\Support\Facades\Blade;
@@ -28,17 +29,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $cart = Cart::where('user_id', Auth::id())->get();
-        // $qty = 0;
-        // foreach ($cart as $key) {
-        //     // $qty = 0;
-        //     $qty += $key->book_qty;
-        // }
-        //  view()->share('cart_count', $qty);
 
-        //  Blade::directive('count_digit', function ($qty) {
-        //      return Str::length($qty);
-        //  });
+        $category = Category::get();
+        view()->share('category', $category);
+
 
         Blade::directive('currency', function ( $expression ) { return "Rp <?php echo number_format($expression,0,',','.'); ?>"; });
     }

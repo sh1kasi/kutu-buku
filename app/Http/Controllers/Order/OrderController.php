@@ -64,16 +64,22 @@ class OrderController extends Controller
         $harga_ongkir = $request->input('harga_ongkir');
         $nama_ongkir = $request->input('nama_ongkir');
         $snaptoken = $request->input('snaptoken');
-        $code = $request->input('coupon');
+        $code = $request->input('code');
 
         $coupon = Coupon::where('code', $code)->first();
         
-        // $order = Order::where('user_id', Auth::id())->where()
+        $order = Order::where('id', $id_order)->where('status', 'pending')->first();
 
-        $order = new Order;
+        // dd($code);
+
+        
+        if (!$order) {
+            $order = new Order;
+        }
+
         $order->order_detail_id =  $order_detail->id;
         $order->user_id =  Auth::id();
-        $order->coupon_id = isset($coupon->id) ? $coupon->id : null;
+        $order->coupon_id = isset($coupon->id) ? $coupon->id : $code;
         $order->snaptoken =  $snaptoken;
         $order->delivery_id = $delivery->id;
         $order->status = $json->transaction_status;
@@ -92,10 +98,12 @@ class OrderController extends Controller
 
         $order->save();
     
+        if ($order->status != 'pending') {
+            $order_detail->order_id = $order->id;
+            $order_detail->status = "Paid";
+            $order_detail->save();
+        }
 
-        $order_detail->order_id = $order->id;
-        $order_detail->status = "Paid";
-        $order_detail->save();
         // dd($order_detail);
 
 
@@ -104,7 +112,7 @@ class OrderController extends Controller
             $value->delete();
         }
 
-        return redirect()->route('view.index');
+        return redirect()->route('view.index')->with('success', 'Pesanan anda berhasil tersimpan di riwayat pembelian');
 
     }
 

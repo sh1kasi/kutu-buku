@@ -22,6 +22,13 @@ class CartController extends Controller
         $book_id = $request->input('book_id');
         $book_qty = $request->input('book_qty');
 
+        $qty = 0;
+        $cart = Cart::where('user_id', Auth::id())->get();
+        foreach ($cart as $key) {
+            $qty += $key->book_qty;
+        }
+        // dd($qty);
+
         if (Auth::check())
         {
             $book_check = Book::where('id', $book_id)->first();
@@ -39,6 +46,7 @@ class CartController extends Controller
                      return response()->json([
                         'status' =>201,
                         'message'=>'Ditambahkan ke Keranjang',
+                        'qty' => $qty,
                     ]);
                 }
                 else
@@ -56,6 +64,7 @@ class CartController extends Controller
                         'status' =>200,
                         'message'=>$book_check->title. " Berhasil Ditambahkan ke Keranjang",
                         'data'=>$book_check,
+                        'qty'=>$qty,
                     ]);
                 }
             }
@@ -245,8 +254,10 @@ class CartController extends Controller
 
     public function massDelete(Request $request)
     {
+        // dd('aaaa');
         $id = $request->input('selectedId');
         Cart::where('user_id', Auth::id())->whereIn('book_id', $id)->delete();
+        // dd($worm);
         // $cart->delete();
     }
 }

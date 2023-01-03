@@ -242,7 +242,7 @@
                     $('#diskon').html(`-`);
                 } else if (response.status == 1) {
                     toastr.success(`${response.message}`);
-                    $('#diskon').html(`(${response.code}) ${response.off}%`);
+                    $('#diskon').html(`(${response.code} - ${response.off}%) - Rp${response.percent.toLocaleString("id-ID")} `);
                     // var disc = (response.off / 100) * response.harga_total;
                     // var after_disc = response.harga_total - disc;
                     console.log(response.harga_total);

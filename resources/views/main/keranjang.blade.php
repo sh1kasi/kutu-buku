@@ -1,7 +1,5 @@
 @extends('layouts.main')
 
-@section('title') {{ "Keranjang" }} @endsection
-
 @section('container')
 
 
@@ -65,7 +63,7 @@
 </div>
 <div class="">
     <div class="delete-keranjang" style="padding-left: 115px; padding-bottom: 20px">
-        <div class="cart card card-body shadow-sm d-flex bg-body rounded">
+        <div class="cart card card-body shadow-sm d-flex bg-body rounded" id="border">
             {{-- <div class="beberapa mr-auto p-2">
                 <a href="#" class="card-link beberapa"
                 style="text-decoration: none; color: #000; font-family: 'Nunito', sans-serif; padding-right: 50px; font-weight: 600; font-size: 14px">Hapus
@@ -74,13 +72,18 @@
             <div class="checkbox p-2" style="margin-right: 420px">
                 <input class="checkbox mt-3" type="checkbox" name="" id="">
             </div> --}}
-            <div class="d-flex">
+            <div class="d-flex" id="pancor">
                 <div class="mr-auto me-1">
-                    <input class="checkboxAll mt-4 chkbox d-none" id="cb-all" type="checkbox" name="">
+                    <input class="checkboxAll mt-4 chkbox d-none" id="cb-all" value="" type="checkbox" name="chkbox">
+                    &nbsp;
+                    <label for="chkbox" class="chkbox d-none">
+                        Pilih Semua ({{ $cartitems->count() }})
+                    </label>
+                    {{-- <span class="chkbox d-none">sdfs</span>  --}}
                 </div>
-                <div class="mt-3  delete-multiple" style="padding-left: 400px; margin-left: 70px">
+                <div class="mt-2 mb-2 delete-multiple" style="padding-left: 380px; margin-left: 70px">
                     <a href="#" class="card-link beberapa" onclick="multipleSelect()"
-                        style="text-decoration: none; color: #000; font-family: 'Nunito', sans-serif; padding-right: 50px; font-weight: 600; font-size: 14px">Hapus
+                        style="text-decoration: none; color: #000; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px">Hapus
                         beberapa
                     </a>
                 </div>
@@ -90,6 +93,7 @@
                 </div> --}}
             </div>
         </div>
+        <div class="errDelete mt-2 text-danger"></div>
     </div>
 </div>
 <div class="pesanan d-flex" style="padding-bottom: 100px; border-bottom: 1px solid #a5a5a5">
@@ -107,8 +111,8 @@
                     {{ $loop->iteration }}</a>
             </div>
             <div class="img-pesanan book_data d-flex" style="padding-bottom: 10px; border-bottom: 1px solid #c1c1c1">
-                <input type="checkbox" class="checkbox_book chkbox d-none" onclick="onSelect({{ $data->book_id }})"
-                    id="checkbox_book" style="margin-bottom: 110px" value="{{ $data->book->id }}" name="ids">
+                <input type="checkbox" class="checkbox_book chkbox d-none {{ $data->book_id }}" onclick="onSelect({{ $data->book_id }})"
+                    id="checkbox_book" style="margin-bottom: 110px" value="{{ $data->book_id }}" name="ids">
                 <img src="{{ asset('coverimage') }}/{{ $data->book->cover }}" alt=""
                     style="width: 85px; height: 130px; padding-left: 20px; padding-bottom: 30px" />
                 <div class="text" style="max-width: 190px">
@@ -136,7 +140,8 @@
                             class="bi bi-plus-circle"></i></button>
                 </div>
                 <div class="price-total" style="padding-top: 13px; padding-left: 90px">
-                    <p style="font-size: 14px; color: #0060ae"><b id="total1">@currency($data->book->price * $data->book_qty)</b>
+                    <p style="font-size: 14px; color: #0060ae"><b id="total1">@currency($data->book->price *
+                            $data->book_qty)</b>
                     </p>
                     <button class="btn delete-item" type="button" onclick="delete_cart({{ $data->book->id }})"
                         style="font-size: 14px"><i class="bi bi-trash3 ms-1"></i>Hapus</button>
@@ -151,232 +156,183 @@
             @endforeach
         </div>
 
+        <div class="total-pesanan d-flex"
+            style="padding-top: 10px; border-top: 1px solid #6e6e6e; justify-content: space-between">
 
-        {{-- <div class="card-body">
-            <a style="font-family: 'Nunito', sans-serif; font-weight: 600; color: #5a5a5a">Pesanan 2</a>
-        </div>
-        <div class="img-pesanan d-flex" style="padding-top: 40px">
-          <img src="{{ asset('custom') }}/image/book1.jpg" alt="" style="width: 85px; height: 130px; padding-left:
-        20px; padding-bottom: 30px" />
-        <div class="text">
-            <p class="title-pesanan ms-1">Love From A to Z</p>
-            <b class="price ms-1">Rp 93.000</b>
-        </div>
-        <div class="minus2" style="font-size: 20px; padding-left: 60px; padding-top: 20px">
-            <button id="minus2"
-                style="border-bottom: 1px solid; padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i
-                    class="bi bi-dash-circle"></i></button>
-        </div>
-        <div class="input2" style="padding-top: 20px">
-            <input id="input2" type="number"
-                style="padding-top: 3px; padding: left 8px; padding-bottom: 10px; background-color: transparent; border: none; width: 40px" />
-        </div>
-        <div class="plus2" style="font-size: 20px; padding-top: 20px">
-            <button id="plus2"
-                style="padding-bottom: 10px; border: none; background-color: transparent; color: #0060ae"><i
-                    class="bi bi-plus-circle"></i></button>
-        </div>
-        <div class="price-total" style="padding-top: 13px; padding-left: 90px">
-            <p style="font-size: 14px; color: #0060ae"><b>Rp 93.000</b></p>
-            <a style="font-size: 14px"><i class="bi bi-trash3 ms-1"></i>Hapus</a>
-        </div>
-    </div> --}}
-
-
-
-
-    <div class="total-pesanan d-flex"
-        style="padding-top: 10px; border-top: 1px solid #6e6e6e; justify-content: space-between">
-
-        <p>Total Pesanan <b>{{ $total_qty }}</b></p>
-        <p><b id="total2">@currency($total
-        )</b></p>
-    </div>
-</div>
-<div class="detail-pesanan ms-3">
-    <div class="card shadow-sm p-3 bg-body rounded" style="width: 500px">
-        <h2 class="title-detail">Rincian Belanja</h2>
-        <div class="harga d-flex" style="justify-content: space-between">
-            <p class="text-detail"><b>Total Biaya Belanja</b></p>
-            <p class="harga-detail" id="total3">Rp {{ $total }}</p>
-        </div>
-        <div class="btn-detail" style="padding-top: 30px">
-            <form action="{{ route('cartCheckout') }}" method="POST">
-                @csrf
-                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                <input type="hidden" name="cart_id" value="{{ $cart_id }}">
-                <input type="hidden" name="book_id" id="book_id" value="{{ $book_id }}">
-                <input type="hidden" name="subtotal" value="{{ $total }}">
-                <button class="rounded-pill btn btn-primary w-100" type="submit">Lanjut ke Halaman Checkout</button>
-            </form>
+            <p>Total Pesanan <b>{{ $total_qty }}</b></p>
+            <p><b id="total2">@currency($total
+                    )</b></p>
         </div>
     </div>
-</div>
+    <div class="detail-pesanan ms-3">
+        <div class="card shadow-sm p-3 bg-body rounded" style="width: 500px">
+            <h2 class="title-detail">Rincian Belanja</h2>
+            <div class="harga d-flex" style="justify-content: space-between">
+                <p class="text-detail"><b>Total Biaya Belanja</b></p>
+                <p class="harga-detail" id="total3">Rp {{ $total }}</p>
+            </div>
+            <div class="btn-detail" style="padding-top: 30px">
+                <form action="{{ route('cartCheckout') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="cart_id" value="{{ $cart_id }}">
+                    <input type="hidden" name="book_id" id="book_id" value="{{ $book_id }}">
+                    <input type="hidden" name="subtotal" value="{{ $total }}">
+                    <button class="rounded-pill btn btn-primary w-100" type="submit">Lanjut ke Halaman Checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endif
 
-<script>
+<input type="hidden" id="total_book" value="{{ $cartitems->count() }}">
 
+<script>
     function multipleSelect() {
         var button = $('#delete-button').html();
-        $(".delete-multiple").attr('style', 'padding-left: 350px');
+        $("#pancor").attr('style', 'justify-content: space-between');
+        $(".delete-multiple").attr('style', 'padding-left: 0px;');
         $(".delete-multiple").html(`<div class="mt-2 ms-5 btn btn-light border btn-sm" id="deleteAllRecords">Hapus</div>
                                     <div class="mt-2 ms-1 btn btn-primary btn-sm" onclick="dismissMultipleSelect()" id="dismissMultipleSelect">Batalkan</div>
                                     `);
         $(".chkbox").removeClass('d-none');
 
-        
-     }
+
+    }
 
     function dismissMultipleSelect() {
-        $(".delete-multiple").attr('style', 'padding-left: 400px; margin-left: 70px');
+        $(".delete-multiple").attr('style', 'padding-left: 380px; margin-left: 70px');
         $(".delete-multiple").html(`<a href="#" class="card-link beberapa"
-                                        onclick="multipleSelect()" style="text-decoration: none; color: #000; font-family: 'Nunito', sans-serif; padding-right: 50px; font-weight: 600; font-size: 14px">Hapus
+                                        onclick="multipleSelect()" style="text-decoration: none; color: #000; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px">Hapus
                                         beberapa
                                     </a>`);
         $(".chkbox").addClass('d-none');
     }
 
     var selectedId = [];
+
     function onSelect(id) {
+
+        var bid = $('.checkbox_book:checked').length;
+        var tot_book = $("#total_book").val();
+
+        // console.log($(`.${bid}`).count);
+        console.log($('.checkbox_book:checked').length);
+
+        if (bid == tot_book) {
+            $('#cb-all').prop('checked', true);
+        } else {
+            $('#cb-all').prop('checked', false);
+        }
+
         $("#deleteAllRecords").click(function (e) {
             e.preventDefault();
-            
-            
+
+
             var val = $(this).val();
-            
-            $(`input:checkbox[value=${id}]`).each(function () {
+
+            $(`input:checkbox[value=${id}]:checked`).each(function () {
                 selectedId.push($(this).val());
             });
-            
-            if (selectedId.length > 0) {     
-                
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-    
-                $.ajax({
-                    type: "DELETE",
-                    url: "/cart/massdelete",
-                    data: {
-                        selectedId: selectedId
-                    },
-                    dataType: "dataType",
-                    success: function (response) {
-                        document.location.reload(true);
-                    }
-                });
 
-            } else {
-                alert('pilih minimal 1 produk untuk dihapus');
-            }
+            // console.log(selectedId.length);
+            console.log(selectedId);
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/cart/massdelete",
+                data: {
+                    selectedId: selectedId
+                },
+                // dataType: "dataType",
+                success: function (response) {
+                    window.location.reload();
+                }
+            });
         })
     }
 
 
-    
+
 
 
 
     $(document).ready(function () {
 
 
-        var selectedId = [];
         $(document).on('click', '#cb-all', function () {
-            $(".checkbox_book").prop('checked', $(this).prop('checked'));
-            
-            $("#deleteAllRecords").click(function (e) {
-                e.preventDefault();
-                
-                var val = $(this).val();
+            // $(".checkbox_book").prop('checked', $(this).prop('checked'));
 
-                $(`input:checkbox[name=ids]`).each(function () {
-                    selectedId.push($(this).val());
-                });
+            if (this.checked) {
+                $(".checkbox_book").each(function () {
+                    this.checked = true;
 
-                if (selectedId.length > 0) {
+                    $("#deleteAllRecords").click(function (e) {
+                        e.preventDefault();
 
-                    $.ajaxSetup({
-                        headers: {
-                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        var val = $(this).val();
+                        var selectedId = [];
+
+
+                        $(`input:checkbox[name=ids]:checked`).each(function () {
+                            selectedId.push($(this).val());
+                        });
+
+                        console.log(selectedId.length);
+
+                        if (selectedId.length > 0) {
+
+                            $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
+                                    .attr('content')
+                            }
+                        });
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/cart/massdelete",
+                            data: {
+                                selectedId: selectedId
+                            },
+                            // dataType: "dataType",
+                            success: function (response) {
+                                // window.location.reload();
+                            }
+                        });
+
+                        } else {
+                            $("#border").addClass('border border-danger');
+                            $(".errDelete").html('Minimal pilih 1 produk untuk dihapus');
                         }
+
+
+                        
+
                     });
 
-                $.ajax({
-                    type: "DELETE",
-                    url: "/cart/massdelete",
-                    data: {
-                        selectedId: selectedId
-                    },
-                    dataType: "dataType",
-                    success: function (response) {
-                        document.location.reload(true);
-                    }
-                }); 
-                                   
-                } else {
-                    alert('Pilih minimal 1 produk untuk dihapus')
-                }
+
+                });
+            } else {
+                $(".checkbox_book").each(function () {
+                    this.checked = false;
+                });
+            }
 
 
-            });
 
         });
 
     });
 
-
-
-    // if ('#book_delete:checked') {
-    //     alert('ke-ceklis');
-    // } else {
-    //     alert('ga ke-ceklis');
-    // }
-
-    // $(document).on('click', '#checkbox_book', function () {
-    //     var selectedId = [];
-
-    //     $("#deleteAllRecords").click(function (e) { 
-    //         e.preventDefault();
-    //         selectedId.push($("#checkbox_book:selected").val());
-    //         console.log(selectedId);
-    //     });
-
-    // });
-    //     var id = [];
-
-
-    //     $.each("#book_delete:checked", function () { 
-    //          id.push($(this).val());
-    //         });
-
-    //     if (id.length > 0) {
-    //         $.ajax({
-    //             type: "get",
-    //             url: "url",
-    //             data: {
-    //                 id: id
-    //             },
-    //             success: function (response) {
-
-    //             }
-    //         });
-    //     } else {
-    //         alert("Pilih minimal 1 item untuk dihapus");
-    //     }
-
-    //     console.log('ke click');
-    // });
-
-    // $("#book_delete").click(function (e) { 
-    //         e.preventDefault();
-
-
-    //     });
 
     $(".increment-btn").click(function (e) {
         e.preventDefault();
@@ -427,12 +383,6 @@
             data: data,
             success: function (response) {
                 window.location.reload();
-                // console.log(total_price);
-                // $(this).closest('.book_data').find('#total1').html(`Rp ${total_price}`);
-                // $(this).closest('.book_data').find('#total2').html(`Rp ${total_price}`);
-                // $(this).closest('.book_data').find('#total3').html(`Rp ${total_price}`);
-                // $("#total2").html(`Rp ${total_price}`);
-                // $("#total3").html(`Rp ${total_price}`);
             }
         });
 
@@ -463,71 +413,6 @@
         });
 
     }
-
-    // function checked_box(id){
-
-    //     var id_book = $('.checkbox_book').val();
-    //     var book_id = [];
-
-
-    //     $("#hapus").click(function (e) { 
-    //         e.preventDefault();
-
-    //         $.each(id_book, function (indexInArray, valueOfElement) { 
-
-    //         });
-
-    //         if("#checkbox_book:checked") {
-    //             console.log(book_id);
-    //         } else {
-    //             console.log('b');
-    //         }
-    //     });
-
-
-    // }
-
-
-    // $(".checkbox_book").click(function (e) { 
-    //     e.preventDefault();
-
-    //     book_id = $(this).val();
-    //     id = [];
-
-
-
-    //     if ("#checkbox_book:checked") {
-    //         $("#hapus").click(function (e) { 
-    //             e.preventDefault();
-
-    //             id.push(book_id);
-    //             if (id.length > 0) {
-
-    //                 $.ajax({
-    //                     type: "get",
-    //                     url: "/cart/massdelete",
-    //                     data: {
-    //                         id: id
-    //                     },
-    //                     dataType: "dataType",
-    //                     success: function (response) {
-
-    //                     }
-    //                 });
-
-    //             } else {
-    //                 alert('Pilih minimal 1 produk untuk dihapus!');
-    //             }
-
-
-    //             // console.log(book_id);        
-    //         });
-
-    //     }
-
-    //     console.log(book_id);
-
-    // });
 
 </script>
 

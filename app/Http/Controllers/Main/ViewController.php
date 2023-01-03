@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main;
 use DateInterval;
 use Midtrans\Snap;
 use App\Models\Book\Book;
+use App\Models\Cart\Cart;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -86,6 +87,9 @@ class ViewController extends Controller
         //  dd($b);     
         }
 
+        
+        
+
         $id = Auth::id();
         $dt = Carbon::now();
         $order_id = $dt->year . $dt->month . $dt->day . $dt->hour . $dt->minute . $dt->second . '-' . $id;
@@ -98,7 +102,7 @@ class ViewController extends Controller
         $order = Order::where('user_id', Auth::id())->get();
             // foreach ($orders->order_detail as $od) {
             // }    
-        
+        // dd($order->order_detail);
         if ($order->count() != 0) {
             foreach ($order as $orders) {
             }
@@ -129,6 +133,8 @@ class ViewController extends Controller
     {
         $order = Order::find($id);
 
+        // dd($order->coupon);
+
         if ($order != null) {
             $book_id = explode(", ", $order->order_detail->book_id);
             $buku_array = [];
@@ -154,7 +160,7 @@ class ViewController extends Controller
             
                     $date = $order->created_at;
                     // $paytime = $date->format('d m Y');
-                    $endtime = $date->add(new DateInterval("P1D"))->format('d m Y h:i:s');
+                    $endtime = $date->add(new DateInterval("P1D"))->format('d-m-Y h:i:s');
             
                     // dd($endtime);
             

@@ -22,6 +22,8 @@
            <p id="counting-days" class="text-primary pt-2" style="font-size: 24px">Produk Sudah Terbayar</p>  
            @elseif ($order->status == 'settlement')
            <p id="counting-days" class="text-primary pt-2" style="font-size: 24px">Produk Sudah Terbayar</p>
+           @elseif ($order->status == 'completed')
+           <p id="counting-days" class="text-primary pt-2" style="font-size: 24px">Pesanan Sudah Selesai</p>
            @else  
            <p style="font-size: 20px; padding-top: 20px">Harap Bayar Sebelum</p>
            <p id="counting-days" class="text-primary" style="font-size: 24px">{{ $endtime }}</p>
@@ -65,6 +67,10 @@
                 <span class="ps-2 pe-2 status-pemesanan text-light" style="background-color: #0f5132">
                 Pembayaran Berhasil
                 </span>
+              @elseif ($order->status == "completed")  
+                <span class="ps-2 pe-2 status-pemesanan text-light" style="background-color: #0f5132">
+                Pesanan Selesai
+                </span>
               @elseif ($order->status == "pending")  
                 <span class="ps-2 pe-2 status-pemesanan text-muted"  style="margin-left: 10px;font-family: 'Nunito', sans-serif;font-weight: 600;height: 30px; background-color: #eaff00">
                 Menunggu Pembayaran
@@ -107,6 +113,8 @@
                     @else
                     <p class="ms-0 mt-2 text-danger" style="font-weight: 600">({{ $order->coupon->code }}) -{{ $order->coupon->percent_off }}%</p>
                     @endif
+                  @else
+                  <p class="ms-0 mt-2" style="font-weight: 600">-</p>
                   @endif
 
                 </div>
@@ -126,6 +134,8 @@
                     @endphp   
                     <p class="m-0">@currency($order->total_price - $price_disc)</p>   
                     @endif
+                  @else
+                    <p class="m-0">@currency($order->total_price)</p>
                   @endif
                 </div>
               </div>
@@ -155,7 +165,8 @@
               @elseif($order->status == 'settlement')
 
               @else
-               <div class="btn btn-outline-primary rounded-pill pembayaran" style="width: 100%; font-family: 'Nunito', sans-serif">Lihat Cara Pembayaran</div>
+              <span><b>Produk ini belum terbayar</b></span>
+               <div class="btn btn-outline-primary rounded-pill pembayaran mt-2" style="width: 100%; font-family: 'Nunito', sans-serif">Lihat Cara Pembayaran</div>
               @endif 
             </div>
           </div>
@@ -187,11 +198,14 @@
   <form action="{{ route('payment') }}" id="submit_form" method="post">
     @csrf
     <input type="hidden" name="json" id="json_callback">
-    <input type="hidden" name="total_price" id="payment_total_price">
-    <input type="hidden" name="harga_ongkir" id="payment_harga_ongkir">
-    <input type="hidden" name="nama_ongkir" id="payment_nama_ongkir">
-    <input type="hidden" name="snaptoken" id="snaptoken">
-    <input type="hidden" name="id_order" id="id_order">
+    <input type="hidden" name="total_price" value="{{ $order->total_price }}" id="payment_total_price">
+    <input type="hidden" name="harga_ongkir" value="{{ $order->ongkir_price }}" id="payment_harga_ongkir">
+    <input type="hidden" name="nama_ongkir" value="{{ $order->expedition }}" id="payment_nama_ongkir">
+    <input type="hidden" name="snaptoken" value="{{ $snapToken }}" id="snaptoken">
+    <input type="hidden" name="id_order" value="{{ $order->id }}" id="id_order">
+    @if ($order->coupon != null)
+     <input type="hidden" name="code" value="{{ $order->coupon->id}}" id="coupon">
+    @endif
   </form>
 
   <script>
@@ -233,7 +247,7 @@
       e.preventDefault();
       // window.location.href = '/buku/checkout';
         // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        window.snap.pay("{{ $order->snaptoken }}", {
+        window.snap.pay("{{ $snapToken }}", {
         onSuccess: function(result){
           /* You may add your own implementation here */
           console.log(result);

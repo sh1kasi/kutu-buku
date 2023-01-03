@@ -6,6 +6,7 @@
 
 @section('container')
 
+
         <!-- account -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -270,6 +271,7 @@
 </div>
 </div> --}}
 <!-- Novel terpopuler -->
+
 
 @if (session('success'))
     <script>

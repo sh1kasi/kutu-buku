@@ -41,31 +41,32 @@
                       <td>{{ $data->created_at->format('d-m-Y') }}</td>
                       <td>@currency($data->total_price)</td>
                       <td>
-                        @if ($data->status == 'delivered')
-                            <p class="alert alert-success">Pesanan Selesai</p>
+                        @if ($data->status == 'completed')
+                            <p class="alert alert-success">Pesanan Selesai
+                            </p>
                         @elseif ($data->status == 'capture')
-                            <p class="alert alert-success">Pembayaran Selesai</p>
+                            <p class="alert alert-success" id="{{ $data->id }}">Pembayaran Selesai</p>
                         @elseif ($data->status == 'settlement')
-                            <p class="alert alert-success">Pembayaran Selesai</p>
+                            <p class="alert alert-success" id="{{ $data->id }}">Pembayaran Selesai</p>
                         @elseif ($data->status == 'pending')
-                            <p class="alert alert-warning">Pembayaran Tertunda</p>
+                            <p class="alert alert-warning" id="{{ $data->id }}">Pembayaran Tertunda</p>
                         @endif
                       </td>
                       {{-- <td><i data-feather="list"></i></td> --}}
                       <td>
-                        <div class="dropdown">
+                        <div class="dropdown" id="dropdownElement">
                             <i data-feather="list" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Dropdown button
                             </i>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="/order/detail/{{ $data->order_id }}">Detail Order</a>
                                 @if ($data->status == 'capture')
-                                  <a class="dropdown-item alert alert-success" href="#">Selesaikan Pesanan</a>
+                                  <p class="dropdown-item alert alert-success" type="button" id="{{ $data->order_id }}" onclick="completeOrder({{ $data->id }})">Selesaikan Pesanan</p>
                                 @elseif ($data->status == 'settlement')
-                                  <a class="dropdown-item alert alert-success" href="#">Selesaikan Pesanan</a>
+                                  <p class="dropdown-item alert alert-success" type="button" id="{{ $data->order_id }}" onclick="completeOrder({{ $data->id }})">Selesaikan Pesanan</p>
                                 @endif
-                                <a class="dropdown-item alert alert-danger" href="#">Hapus Transaksi</a>
-                              
+                                <p class="dropdown-item alert alert-danger" type="button" onclick="deleteOrder({{ $data->id }})">Hapus Transaksi</p>
+                              <input type="hidden" name="order_id" id="order_id" value="{{ $data->order_id }}">
                               {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                             </div>
                         </div>
@@ -80,7 +81,46 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+
 <script>
+
+  function completeOrder(id) {
+    
+    var order_id = $('#order_id').val();
+    var dropdownElement = $("#dropdownElement")
+
+    $.ajax({
+      type: "POST",
+      url: `/order/complete/${id}`,
+      data: {
+        id: id
+      },
+      // dataType: "dataType",
+      success: function (response) {
+        // $(`#${id}`).html(`Pesanan Selesai`);
+        toastr.success('Berhasil menyelesaikan pesanan', 'Success !');
+        window.location.reload();
+      }
+    });
+    
+  }
+
+  function deleteOrder(id) {
+    $.ajax({
+      type: "post",
+      url: `/order/delete/${id}`,
+      data: {
+        id: id,
+      },
+      success: function (response) {
+        toastr.warning('Berhasil menghapus pesanan', 'Success !');
+        window.location.reload();
+      }
+    });
+  }
+
 $(document).ready( function () {
     $('#Tables123').DataTable();
 } );

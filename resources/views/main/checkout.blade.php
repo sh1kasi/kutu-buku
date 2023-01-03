@@ -117,7 +117,6 @@
                         </div>
                         <div class="price-total" style="padding-top: 13px; padding-left: 90px">
                             <p style="font-size: 14px; color: #0060ae"><b>@currency($data->book->price * $data->book_qty)</b></p>
-                            <a style="font-size: 14px"><i class="bi bi-trash3 ms-1"></i>Hapus</a>
                         </div>
                     </div>
                     <input type="hidden" value="{{ $data->book->id }}" class="book_id">

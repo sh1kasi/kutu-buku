@@ -38,7 +38,6 @@
 
     <title>@yield('title') | Kutu Buku</title>
   </head>
-
   <body>
     <a href="#wabox" id="waBox"><img class="wa-icon fixed-bottom" src="{{ asset('custom/image/icon-wa-removebg-preview (1).png') }}" alt="" /></a>
     <!-- navbar -->
@@ -75,10 +74,9 @@
         <a href="#" class="d-flex" style="text-decoration: none">
           <span class="btn" data-target="kotak2" style="padding-right: 200px; font-family: 'Nunito', sans-serif; font-size: 15px">Buku</span>
           <div class="kotak col-md-6" id="kotak2" style="display: none; color: #000000; position: absolute; left: 400px; top: 80px; font-family: 'Nunito', sans-serif; font-size: 15px">
-            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
-            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
-            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
-            <a href="#" class="text-decoration-none text-dark"><p>Buku</p></a>
+            @foreach ($category as $item)
+             <a href="/buku/buku-pilihan?category={{ $item->id }}" class="text-decoration-none text-dark"><p>{{ $item->name }}</p></a>
+            @endforeach
           </div>
         </a>
         <a href="#" class="d-flex" style="text-decoration: none">
@@ -184,9 +182,9 @@
         @if ($qty == 0)
         
         @elseif ($qty <= 9)
-          <span class="count-cart">{{ $qty }}</span>
+          <span id="cartQty" class="count-cart">{{ $qty }}</span>
         @elseif ($qty >= 10)
-           <span class="rounded-pill count-cart2">{{ $qty }}</span>
+           <span id="cartQtyRounded" class="rounded-pill count-cart2">{{ $qty }}</span>
         @else 
         @endif
     
@@ -198,8 +196,8 @@
       </div>
     </nav>
     <!-- tutup navbar -->
-
-
+    
+    <input type="hidden" value="{{ $qty }}" id="qty">
 
     @yield('container')
 

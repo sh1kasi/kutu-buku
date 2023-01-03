@@ -26,6 +26,10 @@
               <span class="ps-2 pt-1 alert alert-success status-pembayaran">
               Pembayaran Berhasil
               </span>
+            @elseif ($data->status == "completed")  
+              <span class="ps-2 pt-1 alert alert-success status-pembayaran">
+              Pesanan Selesai
+              </span>
             @elseif ($data->status == "pending")  
               <span class="ps-2 pt-1 alert alert-warning"  style="margin-left: 10px;font-family: 'Nunito', sans-serif;font-weight: 600;height: 30px;">
               Menunggu Pembayaran
